@@ -21,6 +21,7 @@
 		42A9BB151D090B84009B7ACF /* levelup.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 42A9BB101D090B84009B7ACF /* levelup.mp3 */; };
 		42A9BB161D090B84009B7ACF /* theme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 42A9BB111D090B84009B7ACF /* theme.mp3 */; };
 		42A9BB181D090B92009B7ACF /* Sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 42A9BB171D090B92009B7ACF /* Sprites.atlas */; };
+		42A9BB261D0A48C4009B7ACF /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A9BB251D0A48C4009B7ACF /* Array2D.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		42A9BB101D090B84009B7ACF /* levelup.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = levelup.mp3; sourceTree = "<group>"; };
 		42A9BB111D090B84009B7ACF /* theme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = theme.mp3; sourceTree = "<group>"; };
 		42A9BB171D090B92009B7ACF /* Sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = Sprites.atlas; path = Sounds/Sprites.atlas; sourceTree = "<group>"; };
+		42A9BB251D0A48C4009B7ACF /* Array2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array2D.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				42A9BB171D090B92009B7ACF /* Sprites.atlas */,
 				42A9BAE71D051BFA009B7ACF /* LaunchScreen.storyboard */,
 				42A9BAEA1D051BFA009B7ACF /* Info.plist */,
+				42A9BB251D0A48C4009B7ACF /* Array2D.swift */,
 			);
 			path = swiftris;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42A9BADF1D051BFA009B7ACF /* GameScene.swift in Sources */,
+				42A9BB261D0A48C4009B7ACF /* Array2D.swift in Sources */,
 				42A9BAE11D051BFA009B7ACF /* GameViewController.swift in Sources */,
 				42A9BADB1D051BFA009B7ACF /* AppDelegate.swift in Sources */,
 			);
@@ -520,6 +524,7 @@
 				42A9BB051D051BFA009B7ACF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		42A9BB061D051BFA009B7ACF /* Build configuration list for PBXNativeTarget "swiftrisTests" */ = {
 			isa = XCConfigurationList;
@@ -528,6 +533,7 @@
 				42A9BB081D051BFA009B7ACF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		42A9BB091D051BFA009B7ACF /* Build configuration list for PBXNativeTarget "swiftrisUITests" */ = {
 			isa = XCConfigurationList;
@@ -536,6 +542,7 @@
 				42A9BB0B1D051BFA009B7ACF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
