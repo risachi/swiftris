@@ -22,6 +22,7 @@
 		42A9BB161D090B84009B7ACF /* theme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 42A9BB111D090B84009B7ACF /* theme.mp3 */; };
 		42A9BB181D090B92009B7ACF /* Sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 42A9BB171D090B92009B7ACF /* Sprites.atlas */; };
 		42A9BB261D0A48C4009B7ACF /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A9BB251D0A48C4009B7ACF /* Array2D.swift */; };
+		42A9BB281D0BA46A009B7ACF /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A9BB271D0BA46A009B7ACF /* Block.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		42A9BB111D090B84009B7ACF /* theme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = theme.mp3; sourceTree = "<group>"; };
 		42A9BB171D090B92009B7ACF /* Sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = Sprites.atlas; path = Sounds/Sprites.atlas; sourceTree = "<group>"; };
 		42A9BB251D0A48C4009B7ACF /* Array2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array2D.swift; sourceTree = "<group>"; };
+		42A9BB271D0BA46A009B7ACF /* Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				42A9BAE71D051BFA009B7ACF /* LaunchScreen.storyboard */,
 				42A9BAEA1D051BFA009B7ACF /* Info.plist */,
 				42A9BB251D0A48C4009B7ACF /* Array2D.swift */,
+				42A9BB271D0BA46A009B7ACF /* Block.swift */,
 			);
 			path = swiftris;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 			files = (
 				42A9BADF1D051BFA009B7ACF /* GameScene.swift in Sources */,
 				42A9BB261D0A48C4009B7ACF /* Array2D.swift in Sources */,
+				42A9BB281D0BA46A009B7ACF /* Block.swift in Sources */,
 				42A9BAE11D051BFA009B7ACF /* GameViewController.swift in Sources */,
 				42A9BADB1D051BFA009B7ACF /* AppDelegate.swift in Sources */,
 			);
