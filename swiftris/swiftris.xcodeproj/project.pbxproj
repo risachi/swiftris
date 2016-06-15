@@ -31,6 +31,7 @@
 		42A9BB341D10E880009B7ACF /* JShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A9BB331D10E880009B7ACF /* JShape.swift */; };
 		42A9BB361D10E8AA009B7ACF /* SShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A9BB351D10E8AA009B7ACF /* SShape.swift */; };
 		42A9BB381D10E8E0009B7ACF /* ZShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A9BB371D10E8E0009B7ACF /* ZShape.swift */; };
+		42A9BB3A1D10F5EE009B7ACF /* Swiftris.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A9BB391D10F5EE009B7ACF /* Swiftris.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		42A9BB331D10E880009B7ACF /* JShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JShape.swift; sourceTree = "<group>"; };
 		42A9BB351D10E8AA009B7ACF /* SShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SShape.swift; sourceTree = "<group>"; };
 		42A9BB371D10E8E0009B7ACF /* ZShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZShape.swift; sourceTree = "<group>"; };
+		42A9BB391D10F5EE009B7ACF /* Swiftris.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swiftris.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 				42A9BB251D0A48C4009B7ACF /* Array2D.swift */,
 				42A9BB271D0BA46A009B7ACF /* Block.swift */,
 				42A9BB291D10D526009B7ACF /* Shape.swift */,
+				42A9BB391D10F5EE009B7ACF /* Swiftris.swift */,
 				42A9BB2B1D10E31C009B7ACF /* SquareShape.swift */,
 				42A9BB2D1D10E6D0009B7ACF /* TShape.swift */,
 				42A9BB2F1D10E7D8009B7ACF /* LineShape.swift */,
@@ -325,6 +328,7 @@
 				42A9BB2C1D10E31C009B7ACF /* SquareShape.swift in Sources */,
 				42A9BADF1D051BFA009B7ACF /* GameScene.swift in Sources */,
 				42A9BB341D10E880009B7ACF /* JShape.swift in Sources */,
+				42A9BB3A1D10F5EE009B7ACF /* Swiftris.swift in Sources */,
 				42A9BB2A1D10D526009B7ACF /* Shape.swift in Sources */,
 				42A9BB261D0A48C4009B7ACF /* Array2D.swift in Sources */,
 				42A9BB301D10E7D9009B7ACF /* LineShape.swift in Sources */,

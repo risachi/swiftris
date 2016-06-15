@@ -121,6 +121,58 @@ class Shape: Hashable, CustomStringConvertible {
             return Block(column: column + diff.columnDiff, row: row + diff.rowDiff, color: color)
         }
     }
+    
+    final func rotateBlocks(orientation: Orientation) {
+        guard let blockRowColumnTranslation:Array<(columnDiff: Int, rowDiff: Int)> = blockRowColumnPositions[orientation] else {
+            return
+        }
+        // enumerate() allows us to iterate through an array object by defining an index variable as well as the contents at that index
+        for (idx, diff) in blockRowColumnTranslation.enumerate() {
+            blocks[idx].column = column + diff.columnDiff
+            blocks[idx].row = row + diff.rowDiff
+        }
+    }
+    
+    final func lowerShapeByOneRow() {
+        shiftBy(0, rows:1)
+    }
+    
+    // this method adjusts each row and column
+    final func shiftBy(columns: Int, rows: Int) {
+        self.column += columns
+        self.row += rows
+        for block in blocks {
+            block.column += columns
+            block.row += rows
+        }
+    }
+    
+    // we set the column and row properties before rotating the blocks to their current orientation, which causes an accurate realignment of all blocks relative to the new row and column properties
+    final func moveTo(column: Int, row:Int) {
+        self.column = column
+        self.row = row
+        rotateBlocks(orientation)
+    }
+    
+    final class func random(startingColumn:Int, startingRow:Int) -> Shape {
+        switch Int(arc4random_uniform(NumShapeTypes)) {
+        // creates a new Tetromino shape
+        case 0:
+            return SquareShape(column:startingColumn, row:startingRow)
+        case 1:
+            return LineShape(column:startingColumn, row:startingRow)
+        case 2:
+            return TShape(column:startingColumn, row:startingRow)
+        case 3:
+            return LShape(column:startingColumn, row:startingRow)
+        case 4:
+            return JShape(column:startingColumn, row:startingRow)
+        case 5:
+            return SShape(column:startingColumn, row:startingRow)
+        default:
+            return ZShape(column:startingColumn, row:startingRow)
+        }
+    }
 }
 
 func ==(lhs: Shape, rhs: Shape) -> Bool {
