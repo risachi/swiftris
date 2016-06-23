@@ -143,6 +143,58 @@ class GameScene: SKScene {
             }
         }
     }
+    
+    func animateCollapsingLines(linesToRemove: Array<Array<Block>>, fallenBlocks: Array<Array<Block>>, completion:() -> ()) {
+        var longestDuration: NSTimeInterval = 0
+        for (columnIdx, column) in fallenBlocks.enumerate() {
+            for (blockIdx, block) in column.enumerate() {
+                let newPosition = pointForColumn(block.column, row: block.row)
+                let sprite = block.sprite!
+                let delay = (NSTimeInterval(columnIdx) * 0.05) + (NSTimeInterval(blockIdx) * 0.05)
+                let duration = NSTimeInterval(((sprite.position.y - newPosition.y) / BlockSize) * 0.1)
+                let moveAction = SKAction.moveTo(newPosition, duration: duration)
+                moveAction.timingMode = .EaseOut
+                sprite.runAction(
+                    SKAction.sequence([
+                        SKAction.waitForDuration(delay),
+                        moveAction]))
+                longestDuration = max(longestDuration, duration + delay)
+            }
+        }
+        
+        for rowToRemove in linesToRemove {
+            for block in rowToRemove {
+                // blocks shoot off the screen like explosive debris
+                let randomRadius = CGFloat(UInt(arc4random_uniform(400) + 100))
+                let goLeft = arc4random_uniform(100) % 2 == 0
+                
+                var point = pointForColumn(block.column, row: block.row)
+                point = CGPointMake(point.x + (goLeft ? -randomRadius : randomRadius), point.y)
+                
+                let randomDuration = NSTimeInterval(arc4random_uniform(2)) + 0.5
+                // beginning and starting angles of blocks flying off the screen
+                // the angles are in radians (180degrees is pi; 90degrees is pi/2; 0degrees is 2pi; 270degrees is (3*pi)/2; etc)
+                // when going left, we begin at 0 radians and end at pi; when going right, we go from pi to 2pi
+                var startAngle = CGFloat(M_PI)
+                var endAngle = startAngle * 2
+                if goLeft {
+                    endAngle = startAngle
+                    startAngle = 0
+                }
+                let archPath = UIBezierPath(arcCenter: point, radius: randomRadius, startAngle: startAngle, endAngle: endAngle, clockwise: goLeft)
+                let archAction = SKAction.followPath(archPath.CGPath, asOffset: false, orientToPath: true, duration: randomDuration)
+                archAction.timingMode = .EaseIn
+                let sprite = block.sprite!
+                // we place the block sprite above the others such that they animate above the other blocks and begin the sequence of actions which concludes with removing the sprite from the scene
+                sprite.zPosition = 100
+                sprite.runAction(
+                    SKAction.sequence(
+                        [SKAction.group([archAction, SKAction.fadeOutWithDuration(NSTimeInterval(randomDuration))]),
+                            SKAction.removeFromParent()]))
+            }
+        }
+        runAction(SKAction.waitForDuration(longestDuration), completion:completion)
+    }
 }
 
 
