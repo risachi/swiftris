@@ -49,6 +49,14 @@ class GameScene: SKScene {
         shapeLayer.position = LayerPosition
         shapeLayer.addChild(gameBoard)
         gameLayer.addChild(shapeLayer)
+        
+        // looping sound playback for the theme song
+//        runAction(SKAction.repeatActionForever(SKAction.playSoundFileNamed("Sounds1/theme.mp3", waitForCompletion: true)))
+    }
+    
+    // GameViewController may use this method to play any sound file on demand
+    func playSound(sound:String) {
+        runAction(SKAction.playSoundFileNamed(sound, waitForCompletion: false))
     }
     
     override func update(currentTime: CFTimeInterval) {
@@ -150,7 +158,7 @@ class GameScene: SKScene {
             for (blockIdx, block) in column.enumerate() {
                 let newPosition = pointForColumn(block.column, row: block.row)
                 let sprite = block.sprite!
-                let delay = (NSTimeInterval(columnIdx) * 0.05) + (NSTimeInterval(blockIdx) * 0.05)
+                let delay = (NSTimeInterval(columnIdx) * 0.05) + (NSTimeInterval() * 0.05)
                 let duration = NSTimeInterval(((sprite.position.y - newPosition.y) / BlockSize) * 0.1)
                 let moveAction = SKAction.moveTo(newPosition, duration: duration)
                 moveAction.timingMode = .EaseOut
