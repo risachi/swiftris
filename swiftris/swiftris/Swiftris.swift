@@ -79,16 +79,9 @@ class Swiftris {
         fallingShape = nextShape
         nextShape = Shape.random(PreviewColumn, startingRow: PreviewRow)
         fallingShape?.moveTo(StartingColumn, row: StartingRow)
- 
-        guard detectTimedGameOver() == false else {
-            nextShape = fallingShape
-            nextShape!.moveTo(PreviewColumn, row: PreviewRow)
-            endGame()
-            return (nil, nil)
-        }
         
-        //when there's no more room to move a new shape
-        guard detectIllegalPlacement() == false else {
+        // When there's no more room to move a new shape or we're out of time
+        guard detectIllegalPlacement() == false && detectTimedGameOver() == false else {
             nextShape = fallingShape
             nextShape!.moveTo(PreviewColumn, row: PreviewRow)
             endGame()
