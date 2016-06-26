@@ -18,7 +18,7 @@ let PreviewRow = 1
 
 //"Even a game as sophisticated and well-traveled as Swiftris must admit that its players feed off of small psychological rewards, meaningless as they may be
 let PointsPerLine = 10
-let LevelThreshold = 500
+let LevelThreshold = 100
 
 protocol SwiftrisDelegate {
     // Invoked when the current round of Swiftris ends

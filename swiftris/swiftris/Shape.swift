@@ -53,7 +53,9 @@ let FourthBlockIdx: Int = 3
 
 class Shape: Hashable, CustomStringConvertible {
     // The color of the shape
-    let color:BlockColor
+    func color() -> BlockColor {
+        return BlockColor.random()
+    }
     
     // The blocks comprising the shape
     var blocks = Array<Block>()
@@ -96,7 +98,6 @@ class Shape: Hashable, CustomStringConvertible {
     }
     
     init(column:Int, row:Int, color: BlockColor, orientation:Orientation) {
-        self.color = color
         self.column = column
         self.row = row
         self.orientation = orientation
@@ -106,7 +107,7 @@ class Shape: Hashable, CustomStringConvertible {
     // a convenience initializer must call down to a standard initializer or otherwise your class will fail to compile
     // this one assigns the given row and column values while generating a random color and random orientation
     convenience init(column:Int, row:Int) {
-        self.init(column:column, row:row, color:BlockColor.random(), orientation:Orientation.random())
+        self.init(column:column, row:row, color: BlockColor.random(), orientation:Orientation.random())
     }
     
     // a final function cannot be overridden by subclasses
@@ -118,7 +119,7 @@ class Shape: Hashable, CustomStringConvertible {
         // map adds each Block returned by our code to the blocks array
         // map lets us create one array after looping over the contents of another
         blocks = blockRowColumnTranslations.map { (diff) -> Block in
-            return Block(column: column + diff.columnDiff, row: row + diff.rowDiff, color: color)
+            return Block(column: column + diff.columnDiff, row: row + diff.rowDiff, color: color())
         }
     }
     

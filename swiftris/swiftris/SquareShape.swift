@@ -19,6 +19,11 @@ class SquareShape:Shape {
     
     // we override the blockRowColumnPositions computed property to provide a full dictionary of tuple arrays
     // each index of the arrays represents one of the four blocks ordered from block 0 to block 3
+    
+    override func color() -> BlockColor {
+        return BlockColor.Purple
+    }
+    
     override var blockRowColumnPositions: [Orientation: Array<(columnDiff: Int, rowDiff: Int)>] {
         return [
             Orientation.Zero: [(0, 0), (1, 0), (0, 1), (1, 1)],

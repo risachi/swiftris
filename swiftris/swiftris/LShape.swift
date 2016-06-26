@@ -38,6 +38,10 @@ class LShape:Shape {
      
      */
     
+    override func color() -> BlockColor {
+        return BlockColor.Purple
+    }
+
     override var blockRowColumnPositions: [Orientation: Array<(columnDiff: Int, rowDiff: Int)>] {
         return [
             Orientation.Zero:       [ (0, 0), (0, 1),  (0, 2),  (1, 2)],
