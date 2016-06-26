@@ -6,6 +6,8 @@
 //  Copyright © 2016 Bloc. All rights reserved.
 //
 
+import Foundation
+
 
 let NumColumns = 10
 let NumRows = 20
@@ -52,12 +54,16 @@ class Swiftris {
     
     var score = 0
     var level = 1
-    var gameChoice = GamePlayChoice.Classic
+    var gameChoice = GamePlayChoice.Timed
+    
+    var startDate:NSDate
+    let gameLengthInSeconds = 10.0
     
     init() {
         fallingShape = nil
         nextShape = nil
         blockArray = Array2D<Block>(columns: NumColumns, rows: NumRows)
+        self.startDate = NSDate()
     }
     
     func beginGame() {
@@ -65,12 +71,21 @@ class Swiftris {
             nextShape = Shape.random(PreviewColumn, startingRow: PreviewRow)
         }
         delegate?.gameDidBegin(self)
+        
+        self.startDate = NSDate()
     }
     
     func newShape() -> (fallingShape:Shape?, nextShape:Shape?) {
         fallingShape = nextShape
         nextShape = Shape.random(PreviewColumn, startingRow: PreviewRow)
         fallingShape?.moveTo(StartingColumn, row: StartingRow)
+        
+        if gameLengthInSeconds < (startDate.timeIntervalSinceNow * -1) {
+            nextShape = fallingShape
+            nextShape!.moveTo(PreviewColumn, row: PreviewRow)
+            endGame()
+            return (nil, nil)
+        }
         
         //when there's no more room to move a new shape
         guard detectIllegalPlacement() == false else {
