@@ -40,6 +40,10 @@ protocol SwiftrisDelegate {
     func gameDidLevelUp(swiftris: Swiftris)
 }
 
+enum GamePlayChoice {
+    case Classic, Timed
+}
+
 class Swiftris {
     var blockArray:Array2D<Block>
     var nextShape:Shape?
@@ -48,6 +52,7 @@ class Swiftris {
     
     var score = 0
     var level = 1
+    var gameChoice = GamePlayChoice.Classic
     
     init() {
         fallingShape = nil
