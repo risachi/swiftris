@@ -97,7 +97,7 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         return false
     }
     
-    //lowers the falling shape by onerow and then asks GameScene to redraw the shape at its new location
+    // Handles all the actions which should happen on each tick.
     func didTick() {
         swiftris.letShapeFall()
     }

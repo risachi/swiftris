@@ -56,14 +56,14 @@ class Swiftris {
     var level = 1
     var gameChoice = GamePlayChoice.Timed
     
-    var startDate:NSDate
-    let gameLengthInSeconds = 10.0
+    var startTime:NSDate
+    let gameLengthInSeconds = 5.0
     
     init() {
         fallingShape = nil
         nextShape = nil
         blockArray = Array2D<Block>(columns: NumColumns, rows: NumRows)
-        self.startDate = NSDate()
+        self.startTime = NSDate()
     }
     
     func beginGame() {
@@ -72,15 +72,15 @@ class Swiftris {
         }
         delegate?.gameDidBegin(self)
         
-        self.startDate = NSDate()
+        self.startTime = NSDate()
     }
     
     func newShape() -> (fallingShape:Shape?, nextShape:Shape?) {
         fallingShape = nextShape
         nextShape = Shape.random(PreviewColumn, startingRow: PreviewRow)
         fallingShape?.moveTo(StartingColumn, row: StartingRow)
-        
-        if gameLengthInSeconds < (startDate.timeIntervalSinceNow * -1) {
+ 
+        guard detectTimedGameOver() == false else {
             nextShape = fallingShape
             nextShape!.moveTo(PreviewColumn, row: PreviewRow)
             endGame()
@@ -241,13 +241,23 @@ class Swiftris {
         delegate?.gameShapeDidDrop(self)
     }
     
+    
+    
+    func detectTimedGameOver() -> Bool {
+        return (gameChoice == GamePlayChoice.Timed) &&
+                 (gameLengthInSeconds < (startTime.timeIntervalSinceNow * -1))
+    }
+    
+    
     // every tick, the shape is lowered by one row
     // the game ends if it fails to do so without finding legal placement for it
     func letShapeFall() {
         guard let shape = fallingShape else {
             return
         }
+
         shape.lowerShapeByOneRow()
+        
         if detectIllegalPlacement() {
             shape.raiseShapeByOneRow()
             if detectIllegalPlacement() {
