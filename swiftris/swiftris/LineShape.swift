@@ -26,7 +26,7 @@ class LineShape:Shape {
     // Hinges about the second block
     
     override func color() -> BlockColor {
-        return BlockColor.Purple
+        return BlockColor.Orange
     }
     
     override var blockRowColumnPositions: [Orientation: Array<(columnDiff: Int, rowDiff: Int)>] {

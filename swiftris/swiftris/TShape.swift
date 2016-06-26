@@ -36,7 +36,7 @@ class TShape:Shape {
      */
     
     override func color() -> BlockColor {
-        return BlockColor.Purple
+        return BlockColor.Blue
     }
 
     

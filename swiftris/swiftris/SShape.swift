@@ -36,7 +36,7 @@ class SShape:Shape {
      */
     
     override func color() -> BlockColor {
-        return BlockColor.Purple
+        return BlockColor.Yellow
     }
     
     override var blockRowColumnPositions: [Orientation: Array<(columnDiff: Int, rowDiff: Int)>] {

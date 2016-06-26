@@ -37,7 +37,7 @@ class ZShape:Shape {
      */
     
     override func color() -> BlockColor {
-        return BlockColor.Purple
+        return BlockColor.Teal
     }
 
     

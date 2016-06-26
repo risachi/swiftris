@@ -9,12 +9,12 @@
 import SpriteKit
 
 // define the number of colors available to Swiftris
-let NumberOfColors: UInt32 = 6
+let NumberOfColors: UInt32 = 7
 
 // enums that implement CustomStringConvertible are capable of generating human-readable strings when debugging or printing their value to the console
 enum BlockColor: Int, CustomStringConvertible {
     // provide the full list of enumerable options, one for each color beginning with Blue = 0 and ending with Yellow = 5
-    case Blue = 0, Orange, Purple, Red, Teal, Yellow
+    case Blue = 0, Orange, Purple, Red, Teal, Yellow, Green
     
     // a code block generates the value of spriteName each time (this could be done with a function named spriteName() )
     var spriteName: String {
@@ -31,6 +31,8 @@ enum BlockColor: Int, CustomStringConvertible {
             return "teal"
         case .Yellow:
             return "yellow"
+        case .Green:
+            return "green"
         }
     }
     

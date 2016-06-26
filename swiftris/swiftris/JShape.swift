@@ -38,7 +38,7 @@ class JShape:Shape {
      */
     
     override func color() -> BlockColor {
-        return BlockColor.Purple
+        return BlockColor.Teal
     }
     
     override var blockRowColumnPositions: [Orientation: Array<(columnDiff: Int, rowDiff: Int)>] {
