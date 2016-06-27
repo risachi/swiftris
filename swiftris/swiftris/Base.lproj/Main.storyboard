@@ -1,25 +1,105 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8118" systemVersion="15A172" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BV1-FR-VrT">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8098"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="swiftris" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8aa-yV-Osq"/>
                         <viewControllerLayoutGuide type="bottom" id="qHh-Mt-9TT"/>
                     </layoutGuides>
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gZI-NG-glc">
+                                <rect key="frame" x="224" y="118" width="84" height="100"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="whitebg" translatesAutoresizingMaskIntoConstraints="NO" id="8Hl-xA-4wF">
+                                        <rect key="frame" x="0.0" y="0.0" width="84" height="100"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SCORE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uH3-HH-5kj">
+                                        <rect key="frame" x="7" y="20" width="70" height="21"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="15"/>
+                                        <color key="textColor" red="0.13333333333333333" green="0.6470588235294118" blue="0.82745098039215681" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <size key="shadowOffset" width="0.0" height="0.0"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="Fng-aN-rnZ">
+                                        <rect key="frame" x="0.0" y="45" width="84" height="39"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="35"/>
+                                        <color key="textColor" red="0.1333333333" green="0.64705882349999999" blue="0.82745098039999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <size key="shadowOffset" width="0.0" height="0.0"/>
+                                    </label>
+                                </subviews>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eDc-qq-tDG">
+                                <rect key="frame" x="224" y="237" width="84" height="100"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="whitebg" translatesAutoresizingMaskIntoConstraints="NO" id="jiS-Nf-q4s">
+                                        <rect key="frame" x="0.0" y="0.0" width="84" height="100"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="LEVEL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xIg-Gt-0Nx">
+                                        <rect key="frame" x="7" y="20" width="70" height="21"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="15"/>
+                                        <color key="textColor" red="0.54509803921568623" green="0.45490196078431372" blue="0.76078431372549016" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <size key="shadowOffset" width="0.0" height="0.0"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="LX0-DB-LTZ">
+                                        <rect key="frame" x="0.0" y="45" width="84" height="39"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="35"/>
+                                        <color key="textColor" red="0.5450980392" green="0.4549019608" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <size key="shadowOffset" width="0.0" height="0.0"/>
+                                    </label>
+                                </subviews>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="ix9-Au-ngr" appends="YES" id="UcU-o1-NXX"/>
+                            <outletCollection property="gestureRecognizers" destination="BqA-iI-hpo" appends="YES" id="cSa-uo-p6e"/>
+                            <outletCollection property="gestureRecognizers" destination="sub-En-4yU" appends="YES" id="nGv-Gp-cUA"/>
+                        </connections>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="levelLabel" destination="LX0-DB-LTZ" id="g6v-By-0dZ"/>
+                        <outlet property="scoreLabel" destination="Fng-aN-rnZ" id="iNU-E4-6Hw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="ix9-Au-ngr">
+                    <connections>
+                        <action selector="didTap:" destination="BV1-FR-VrT" id="uaO-6i-oX1"/>
+                        <outlet property="delegate" destination="BV1-FR-VrT" id="zBi-3T-qI4"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="BqA-iI-hpo">
+                    <connections>
+                        <action selector="didPan:" destination="BV1-FR-VrT" id="rpP-f9-No9"/>
+                        <outlet property="delegate" destination="BV1-FR-VrT" id="uzq-77-rtI"/>
+                    </connections>
+                </panGestureRecognizer>
+                <swipeGestureRecognizer direction="down" id="sub-En-4yU">
+                    <connections>
+                        <action selector="didSwipe:" destination="BV1-FR-VrT" id="qB8-am-AoI"/>
+                        <outlet property="delegate" destination="BV1-FR-VrT" id="pwz-TJ-pkC"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="whitebg" width="84" height="100"/>
+    </resources>
 </document>
