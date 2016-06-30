@@ -26,6 +26,7 @@
 		42A9BB361D10E8AA009B7ACF /* SShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A9BB351D10E8AA009B7ACF /* SShape.swift */; };
 		42A9BB381D10E8E0009B7ACF /* ZShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A9BB371D10E8E0009B7ACF /* ZShape.swift */; };
 		42A9BB3A1D10F5EE009B7ACF /* Swiftris.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A9BB391D10F5EE009B7ACF /* Swiftris.swift */; };
+		42A9BB491D2215DA009B7ACF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A9BB481D2215DA009B7ACF /* HomeViewController.swift */; };
 		CCA885AE1D20F1AC0061A040 /* Sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = CCA885AD1D20F1AC0061A040 /* Sprites.atlas */; };
 		CCA885B51D20F1B40061A040 /* bomb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CCA885B01D20F1B40061A040 /* bomb.mp3 */; };
 		CCA885B61D20F1B40061A040 /* drop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CCA885B11D20F1B40061A040 /* drop.mp3 */; };
@@ -77,6 +78,7 @@
 		42A9BB351D10E8AA009B7ACF /* SShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SShape.swift; sourceTree = "<group>"; };
 		42A9BB371D10E8E0009B7ACF /* ZShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZShape.swift; sourceTree = "<group>"; };
 		42A9BB391D10F5EE009B7ACF /* Swiftris.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swiftris.swift; sourceTree = "<group>"; };
+		42A9BB481D2215DA009B7ACF /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CCA885AD1D20F1AC0061A040 /* Sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Sprites.atlas; sourceTree = "<group>"; };
 		CCA885B01D20F1B40061A040 /* bomb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bomb.mp3; sourceTree = "<group>"; };
 		CCA885B11D20F1B40061A040 /* drop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = drop.mp3; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				42A9BADA1D051BFA009B7ACF /* AppDelegate.swift */,
 				42A9BADE1D051BFA009B7ACF /* GameScene.swift */,
 				42A9BAE01D051BFA009B7ACF /* GameViewController.swift */,
+				42A9BB481D2215DA009B7ACF /* HomeViewController.swift */,
 				42A9BAE21D051BFA009B7ACF /* Main.storyboard */,
 				42A9BAE51D051BFA009B7ACF /* Assets.xcassets */,
 				CCA885AD1D20F1AC0061A040 /* Sprites.atlas */,
@@ -330,6 +333,7 @@
 				42A9BADF1D051BFA009B7ACF /* GameScene.swift in Sources */,
 				42A9BB341D10E880009B7ACF /* JShape.swift in Sources */,
 				42A9BB3A1D10F5EE009B7ACF /* Swiftris.swift in Sources */,
+				42A9BB491D2215DA009B7ACF /* HomeViewController.swift in Sources */,
 				42A9BB2A1D10D526009B7ACF /* Shape.swift in Sources */,
 				42A9BB261D0A48C4009B7ACF /* Array2D.swift in Sources */,
 				42A9BB301D10E7D9009B7ACF /* LineShape.swift in Sources */,
