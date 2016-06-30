@@ -97,8 +97,10 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         return false
     }
     
-    //lowers the falling shape by onerow and then asks GameScene to redraw the shape at its new location
+    // Handles all the actions which should happen on each tick.
+    // when time in a timed game has elapsed, gestures are disabled
     func didTick() {
+        view.userInteractionEnabled = !swiftris.detectTimedGameOver()
         swiftris.letShapeFall()
     }
     

@@ -6,6 +6,8 @@
 //  Copyright © 2016 Bloc. All rights reserved.
 //
 
+import Foundation
+
 
 let NumColumns = 10
 let NumRows = 20
@@ -18,7 +20,7 @@ let PreviewRow = 1
 
 //"Even a game as sophisticated and well-traveled as Swiftris must admit that its players feed off of small psychological rewards, meaningless as they may be
 let PointsPerLine = 10
-let LevelThreshold = 500
+let LevelThreshold = 100
 
 protocol SwiftrisDelegate {
     // Invoked when the current round of Swiftris ends
@@ -40,6 +42,10 @@ protocol SwiftrisDelegate {
     func gameDidLevelUp(swiftris: Swiftris)
 }
 
+enum GamePlayChoice {
+    case Classic, Timed
+}
+
 class Swiftris {
     var blockArray:Array2D<Block>
     var nextShape:Shape?
@@ -48,11 +54,16 @@ class Swiftris {
     
     var score = 0
     var level = 1
+    var gameChoice = GamePlayChoice.Timed
+    
+    var startTime:NSDate
+    let gameLengthInSeconds = 5.0
     
     init() {
         fallingShape = nil
         nextShape = nil
         blockArray = Array2D<Block>(columns: NumColumns, rows: NumRows)
+        self.startTime = NSDate()
     }
     
     func beginGame() {
@@ -60,6 +71,8 @@ class Swiftris {
             nextShape = Shape.random(PreviewColumn, startingRow: PreviewRow)
         }
         delegate?.gameDidBegin(self)
+        
+        self.startTime = NSDate()
     }
     
     func newShape() -> (fallingShape:Shape?, nextShape:Shape?) {
@@ -67,8 +80,8 @@ class Swiftris {
         nextShape = Shape.random(PreviewColumn, startingRow: PreviewRow)
         fallingShape?.moveTo(StartingColumn, row: StartingRow)
         
-        //when there's no more room to move a new shape
-        guard detectIllegalPlacement() == false else {
+        // When there's no more room to move a new shape or we're out of time
+        guard detectIllegalPlacement() == false && detectTimedGameOver() == false else {
             nextShape = fallingShape
             nextShape!.moveTo(PreviewColumn, row: PreviewRow)
             endGame()
@@ -221,13 +234,23 @@ class Swiftris {
         delegate?.gameShapeDidDrop(self)
     }
     
+    
+    
+    func detectTimedGameOver() -> Bool {
+        return (gameChoice == GamePlayChoice.Timed) &&
+                 (gameLengthInSeconds < (startTime.timeIntervalSinceNow * -1))
+    }
+    
+    
     // every tick, the shape is lowered by one row
     // the game ends if it fails to do so without finding legal placement for it
     func letShapeFall() {
         guard let shape = fallingShape else {
             return
         }
+
         shape.lowerShapeByOneRow()
+        
         if detectIllegalPlacement() {
             shape.raiseShapeByOneRow()
             if detectIllegalPlacement() {

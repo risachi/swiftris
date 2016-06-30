@@ -36,6 +36,11 @@ class ZShape:Shape {
      
      */
     
+    override func color() -> BlockColor {
+        return BlockColor.Teal
+    }
+
+    
     override var blockRowColumnPositions: [Orientation: Array<(columnDiff: Int, rowDiff: Int)>] {
         return [
             Orientation.Zero:       [(1, 0), (1, 1), (0, 1), (0, 2)],

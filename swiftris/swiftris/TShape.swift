@@ -35,6 +35,11 @@ class TShape:Shape {
      
      */
     
+    override func color() -> BlockColor {
+        return BlockColor.Blue
+    }
+
+    
     override var blockRowColumnPositions: [Orientation: Array<(columnDiff: Int, rowDiff: Int)>] {
         return [
             Orientation.Zero:       [(1, 0), (0, 1), (1, 1), (2, 1)],
