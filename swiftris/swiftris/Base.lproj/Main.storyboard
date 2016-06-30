@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dvZ-0P-xCe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="yzo-qV-4NZ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -98,7 +98,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1290" y="436"/>
+            <point key="canvasLocation" x="2211" y="428"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="DGO-Qa-GTi">
@@ -109,36 +109,48 @@
                         <viewControllerLayoutGuide type="bottom" id="utP-yG-ij4"/>
                     </layoutGuides>
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="xZo-JM-jQG" customClass="HomeViewController">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wda-lr-2Dj">
+                                <rect key="frame" x="123" y="165" width="74" height="22"/>
+                                <state key="normal" title="Button" image="orange.png"/>
+                                <connections>
+                                    <segue destination="BV1-FR-VrT" kind="show" id="R4k-pd-00P"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="mDP-Ug-fDs"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="48n-2p-FG2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="938" y="1156"/>
+            <point key="canvasLocation" x="1731" y="428"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="2LT-v3-rRk">
+        <scene sceneID="gMp-Zh-O4M">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ShF-Fb-H9g" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yzo-qV-4NZ" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZZN-0g-Zcg">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kQc-FO-M9s">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BV1-FR-VrT" kind="relationship" relationship="rootViewController" id="9xu-US-sS7"/>
+                        <segue destination="dvZ-0P-xCe" kind="relationship" relationship="rootViewController" id="ydb-MM-O4B"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jxl-5v-OBc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RQk-pI-ZD8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="478" y="436"/>
+            <point key="canvasLocation" x="1250" y="428"/>
         </scene>
     </scenes>
     <resources>
+        <image name="orange.png" width="20" height="20"/>
         <image name="whitebg" width="84" height="100"/>
     </resources>
 </document>
