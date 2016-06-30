@@ -51,7 +51,7 @@ class GameScene: SKScene {
         gameLayer.addChild(shapeLayer)
         
         // looping sound playback for the theme song
-//        runAction(SKAction.repeatActionForever(SKAction.playSoundFileNamed("Sounds1/theme.mp3", waitForCompletion: true)))
+        runAction(SKAction.repeatActionForever(SKAction.playSoundFileNamed("theme.mp3", waitForCompletion: true)))
     }
     
     // GameViewController may use this method to play any sound file on demand
