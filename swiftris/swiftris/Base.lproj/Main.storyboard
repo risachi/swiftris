@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="yzo-qV-4NZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1808" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="yzo-qV-4NZ">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
         <!--Game View Controller-->
@@ -98,12 +98,12 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2211" y="428"/>
+            <point key="canvasLocation" x="2206" y="428"/>
         </scene>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="DGO-Qa-GTi">
             <objects>
-                <viewController id="dvZ-0P-xCe" sceneMemberID="viewController">
+                <viewController id="dvZ-0P-xCe" customClass="HomeViewController" customModule="swiftris" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2Yq-fG-VT7"/>
                         <viewControllerLayoutGuide type="bottom" id="utP-yG-ij4"/>
@@ -113,16 +113,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wda-lr-2Dj">
-                                <rect key="frame" x="123" y="165" width="74" height="22"/>
+                                <rect key="frame" x="193" y="273" width="74" height="22"/>
                                 <state key="normal" title="Button" image="orange.png"/>
                                 <connections>
                                     <segue destination="BV1-FR-VrT" kind="show" id="R4k-pd-00P"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="05f-sr-1d5">
+                                <rect key="frame" x="37" y="269" width="90" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="1" green="0.020100812990000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BV1-FR-VrT" kind="show" id="Kka-Aw-b8E"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="mDP-Ug-fDs"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="48n-2p-FG2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -153,4 +164,7 @@
         <image name="orange.png" width="20" height="20"/>
         <image name="whitebg" width="84" height="100"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="R4k-pd-00P"/>
+    </inferredMetricsTieBreakers>
 </document>

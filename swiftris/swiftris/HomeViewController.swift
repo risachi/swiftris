@@ -6,4 +6,9 @@
 //  Copyright © 2016 Bloc. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import SpriteKit
+
+class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
+
+}
