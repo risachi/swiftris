@@ -42,7 +42,7 @@ protocol SwiftrisDelegate {
     func gameDidLevelUp(swiftris: Swiftris)
 }
 
-enum GamePlayChoice {
+enum GamePlayChoice: String {
     case Classic, Timed
 }
 
