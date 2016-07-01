@@ -108,7 +108,7 @@
                         <viewControllerLayoutGuide type="top" id="2Yq-fG-VT7"/>
                         <viewControllerLayoutGuide type="bottom" id="utP-yG-ij4"/>
                     </layoutGuides>
-                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="xZo-JM-jQG" customClass="HomeViewController">
+                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="xZo-JM-jQG" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -165,6 +165,6 @@
         <image name="whitebg" width="84" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Kka-Aw-b8E"/>
+        <segue reference="R4k-pd-00P"/>
     </inferredMetricsTieBreakers>
 </document>
