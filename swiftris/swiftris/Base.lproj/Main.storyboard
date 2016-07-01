@@ -116,7 +116,7 @@
                                 <rect key="frame" x="193" y="273" width="74" height="22"/>
                                 <state key="normal" title="Button" image="orange.png"/>
                                 <connections>
-                                    <segue destination="BV1-FR-VrT" kind="show" id="R4k-pd-00P"/>
+                                    <segue destination="BV1-FR-VrT" kind="show" identifier="timedGameSegue" id="R4k-pd-00P"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="05f-sr-1d5">
@@ -126,7 +126,7 @@
                                     <color key="titleColor" red="1" green="0.020100812990000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="BV1-FR-VrT" kind="show" id="Kka-Aw-b8E"/>
+                                    <segue destination="BV1-FR-VrT" kind="show" identifier="classicGameSegue" id="Kka-Aw-b8E"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -165,6 +165,6 @@
         <image name="whitebg" width="84" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="R4k-pd-00P"/>
+        <segue reference="Kka-Aw-b8E"/>
     </inferredMetricsTieBreakers>
 </document>

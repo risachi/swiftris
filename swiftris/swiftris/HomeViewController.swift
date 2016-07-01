@@ -9,6 +9,21 @@
 import UIKit
 import SpriteKit
 
+
+
 class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
+    
+    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+        // we downcast (as!) from UIViewController to GameViewController because UIViewController doesn't have a "gameType" property, which we access below
+        let gameViewController = segue.destinationViewController as! GameViewController
+        
+        if (segue.identifier == "timedGameSegue") {
+            gameViewController.gameType = GamePlayChoice.Timed
+        } else {
+            gameViewController.gameType = GamePlayChoice.Classic
+            
+        }
+    }
 
 }
+
