@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1808" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="yzo-qV-4NZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="yzo-qV-4NZ">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--Game View Controller-->
@@ -105,34 +105,55 @@
             <objects>
                 <viewController id="dvZ-0P-xCe" customClass="HomeViewController" customModule="swiftris" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="2Yq-fG-VT7"/>
-                        <viewControllerLayoutGuide type="bottom" id="utP-yG-ij4"/>
+                        <viewControllerLayoutGuide type="top" id="u3T-zJ-kxh"/>
+                        <viewControllerLayoutGuide type="bottom" id="KjK-aw-bpH"/>
                     </layoutGuides>
-                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="xZo-JM-jQG" customClass="SKView">
+                    <view key="view" contentMode="scaleToFill" id="Jv4-0q-zcV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wda-lr-2Dj">
-                                <rect key="frame" x="193" y="273" width="74" height="22"/>
-                                <state key="normal" title="Button" image="orange.png"/>
-                                <connections>
-                                    <segue destination="BV1-FR-VrT" kind="show" identifier="Timed" id="R4k-pd-00P"/>
-                                </connections>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="7hN-N7-l4h">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="gameboard" translatesAutoresizingMaskIntoConstraints="NO" id="QiB-oN-QFh">
+                                <rect key="frame" x="20" y="341" width="280" height="207"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleAspectFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bzt-3C-vE9" userLabel="Endless Button">
+                                <rect key="frame" x="32" y="349" width="113" height="100"/>
+                                <state key="normal" title="" image="Endless"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="05f-sr-1d5">
-                                <rect key="frame" x="37" y="269" width="90" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleColor" red="1" green="0.020100812990000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="BV1-FR-VrT" kind="show" identifier="Classic" id="Kka-Aw-b8E"/>
-                                </connections>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vki-I6-htx" userLabel="Timed Button">
+                                <rect key="frame" x="174" y="349" width="113" height="100"/>
+                                <state key="normal" image="Timed" backgroundImage="home_btn_bg"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LbA-Yv-UQR" userLabel="Leaders Button">
+                                <rect key="frame" x="32" y="448" width="113" height="100"/>
+                                <state key="normal" image="Leaders" backgroundImage="home_btn_bg"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="518-F2-cIJ" userLabel="Achievements Button">
+                                <rect key="frame" x="174" y="448" width="113" height="100"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <state key="normal" image="Achievements" backgroundImage="home_btn_bg"/>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="wYD-7e-Uxc">
+                                <rect key="frame" x="20" y="71" width="280" height="238"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QiB-oN-QFh" firstAttribute="top" secondItem="wYD-7e-Uxc" secondAttribute="bottom" constant="20" id="1Po-Fs-j6d"/>
+                            <constraint firstItem="518-F2-cIJ" firstAttribute="height" secondItem="Bzt-3C-vE9" secondAttribute="height" id="DQm-Kx-nTY"/>
+                            <constraint firstItem="LbA-Yv-UQR" firstAttribute="height" secondItem="Bzt-3C-vE9" secondAttribute="height" id="KVn-Az-D4H"/>
+                            <constraint firstItem="LbA-Yv-UQR" firstAttribute="top" secondItem="Bzt-3C-vE9" secondAttribute="bottom" id="LEj-rE-Txi"/>
+                            <constraint firstItem="Bzt-3C-vE9" firstAttribute="top" secondItem="QiB-oN-QFh" secondAttribute="top" id="Sf6-b1-Sb6"/>
+                            <constraint firstItem="LbA-Yv-UQR" firstAttribute="bottom" secondItem="QiB-oN-QFh" secondAttribute="bottom" id="VUB-Fw-hgv"/>
+                            <constraint firstItem="KjK-aw-bpH" firstAttribute="top" secondItem="QiB-oN-QFh" secondAttribute="bottom" constant="20" id="XbI-jz-u8g"/>
+                            <constraint firstItem="wYD-7e-Uxc" firstAttribute="top" secondItem="u3T-zJ-kxh" secondAttribute="bottom" constant="51" id="x6W-cQ-sGV"/>
+                            <constraint firstItem="Vki-I6-htx" firstAttribute="height" secondItem="Bzt-3C-vE9" secondAttribute="height" id="yUM-FA-Y4l"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="mDP-Ug-fDs"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
@@ -161,10 +182,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="orange.png" width="20" height="20"/>
+        <image name="Achievements" width="113" height="100"/>
+        <image name="Endless" width="113" height="100"/>
+        <image name="Leaders" width="113" height="100"/>
+        <image name="Timed" width="113" height="100"/>
+        <image name="background" width="320" height="568"/>
+        <image name="gameboard" width="200" height="400"/>
+        <image name="home_btn_bg" width="113" height="100"/>
+        <image name="logo" width="167" height="122"/>
         <image name="whitebg" width="84" height="100"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="R4k-pd-00P"/>
-    </inferredMetricsTieBreakers>
 </document>

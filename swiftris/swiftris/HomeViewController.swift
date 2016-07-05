@@ -28,15 +28,7 @@ class HomeViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     var swiftris: Swiftris!
     override func viewDidLoad() {
         super.viewDidLoad()
-        let skView = view as! SKView
-        skView.multipleTouchEnabled = false
-        
-        // create and configure the scene
-        scene = GameScene(size: CGSize(width: 320, height: 568))
-        scene.scaleMode = .AspectFill
-        
-        // present the scene
-        skView.presentScene(scene)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     func gameDidEnd(swiftris: Swiftris) {}
