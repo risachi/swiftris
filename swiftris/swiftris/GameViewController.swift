@@ -13,9 +13,15 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     var scene: GameScene!
     var swiftris: Swiftris!
     var panPointReference:CGPoint? //keep track of the last point on th screen at which a shape movement occurred or where a pan begins
+    var gameType: GamePlayChoice!
+
+
+    
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var levelLabel: UILabel!
+    
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,6 +40,7 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         
         swiftris = Swiftris()
         swiftris.delegate = self
+        swiftris.gameChoice = gameType
         swiftris.beginGame()
         
         // present the scene
