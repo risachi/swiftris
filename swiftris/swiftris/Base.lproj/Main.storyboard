@@ -124,16 +124,16 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vki-I6-htx" userLabel="Timed Button">
                                 <rect key="frame" x="174" y="349" width="113" height="100"/>
-                                <state key="normal" image="Timed" backgroundImage="home_btn_bg"/>
+                                <state key="normal" image="Timed"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LbA-Yv-UQR" userLabel="Leaders Button">
                                 <rect key="frame" x="32" y="448" width="113" height="100"/>
-                                <state key="normal" image="Leaders" backgroundImage="home_btn_bg"/>
+                                <state key="normal" image="Leaders"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="518-F2-cIJ" userLabel="Achievements Button">
                                 <rect key="frame" x="174" y="448" width="113" height="100"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                                <state key="normal" image="Achievements" backgroundImage="home_btn_bg"/>
+                                <state key="normal" image="Achievements"/>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="wYD-7e-Uxc">
                                 <rect key="frame" x="20" y="71" width="280" height="238"/>
@@ -188,7 +188,6 @@
         <image name="Timed" width="113" height="100"/>
         <image name="background" width="320" height="568"/>
         <image name="gameboard" width="200" height="400"/>
-        <image name="home_btn_bg" width="113" height="100"/>
         <image name="logo" width="167" height="122"/>
         <image name="whitebg" width="84" height="100"/>
     </resources>
