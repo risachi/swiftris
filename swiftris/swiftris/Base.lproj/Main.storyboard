@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="yzo-qV-4NZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1808" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="yzo-qV-4NZ">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -129,6 +129,9 @@
                                     <constraint firstAttribute="width" secondItem="X5U-gw-4iY" secondAttribute="height" multiplier="443:383" id="6PW-y8-wz3"/>
                                 </constraints>
                                 <state key="normal" image="Endless"/>
+                                <connections>
+                                    <segue destination="BV1-FR-VrT" kind="show" identifier="Classic" id="8Mt-SH-q1Z"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xp3-P5-0Va" userLabel="Timed">
                                 <rect key="frame" x="165" y="304" width="129" height="112"/>
@@ -136,6 +139,9 @@
                                     <constraint firstAttribute="width" secondItem="Xp3-P5-0Va" secondAttribute="height" multiplier="443:383" id="tPs-L6-SAu"/>
                                 </constraints>
                                 <state key="normal" image="Timed"/>
+                                <connections>
+                                    <segue destination="BV1-FR-VrT" kind="show" identifier="Timed" id="f0W-s3-hmq"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r0Y-XF-gAu" userLabel="Achievements">
                                 <rect key="frame" x="165" y="426" width="129" height="112"/>
@@ -218,4 +224,7 @@
         <image name="logo" width="167" height="122"/>
         <image name="whitebg" width="84" height="100"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="f0W-s3-hmq"/>
+    </inferredMetricsTieBreakers>
 </document>
