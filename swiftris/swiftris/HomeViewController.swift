@@ -20,10 +20,6 @@ class HomeViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         gameViewController.gameType = GamePlayChoice(rawValue: segue.identifier!)
     }
     
-    
-    
-    
-    
     var scene: GameScene!
     var swiftris: Swiftris!
     override func viewDidLoad() {
