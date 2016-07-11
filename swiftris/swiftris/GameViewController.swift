@@ -45,11 +45,9 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         swiftris.gameChoice = gameType
         swiftris.beginGame()
         
-        if gameType == GamePlayChoice.Classic {
-            self.navigationItem.title = "Endless"
-        } else {
-            self.navigationItem.title = "Time: 00:05"
-        }
+        // Set the title using the "ternary" operator ... ? :
+        // if game type is Classic, set the title to Endless. Otherwise, set it to "Time..."
+        self.navigationItem.title = (gameType == GamePlayChoice.Classic) ? "Endless" : "Time: 00:05"
         
         // present the scene
         skView.presentScene(scene)
@@ -115,7 +113,10 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     // Handles all the actions which should happen on each tick.
     // when time in a timed game has elapsed, gestures are disabled
     func didTick() {
-        view.userInteractionEnabled = !swiftris.detectTimedGameOver()
+        if gameType == GamePlayChoice.Timed {
+            view.userInteractionEnabled = !swiftris.detectTimedGameOver()
+            self.navigationItem.title = "Time: \(swiftris.timeRemaining())"
+        }
         swiftris.letShapeFall()
     }
     

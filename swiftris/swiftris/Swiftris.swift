@@ -237,10 +237,19 @@ class Swiftris {
     
     
     func detectTimedGameOver() -> Bool {
-        return (gameChoice == GamePlayChoice.Timed) &&
-                 (gameLengthInSeconds < (startTime.timeIntervalSinceNow * -1))
+        return (gameChoice == GamePlayChoice.Timed) && (gameLengthInSeconds < elapsedTime())
     }
     
+    
+    func timeRemaining() -> String {
+        let result = gameLengthInSeconds - elapsedTime()
+        return (result > 0) ? result.description : "00:00"
+    }
+    
+    
+    func elapsedTime() -> Double {
+        return startTime.timeIntervalSinceNow * -1
+    }
     
     // every tick, the shape is lowered by one row
     // the game ends if it fails to do so without finding legal placement for it
