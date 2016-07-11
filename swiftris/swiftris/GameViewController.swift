@@ -47,7 +47,7 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         
         // Set the title using the "ternary" operator ... ? :
         // if game type is Classic, set the title to Endless. Otherwise, set it to "Time..."
-        self.navigationItem.title = (gameType == GamePlayChoice.Classic) ? "Endless" : "Time: 00:05"
+        self.navigationItem.title = (gameType == GamePlayChoice.Classic) ? "Endless" : "Time: 2:00"
         
         // present the scene
         skView.presentScene(scene)

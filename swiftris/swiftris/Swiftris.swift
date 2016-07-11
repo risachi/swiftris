@@ -57,7 +57,7 @@ class Swiftris {
     var gameChoice = GamePlayChoice.Timed
     
     var startTime:NSDate
-    let gameLengthInSeconds = 5.0
+    let gameLengthInSeconds = 120.0
     
     init() {
         fallingShape = nil
@@ -243,7 +243,13 @@ class Swiftris {
     
     func timeRemaining() -> String {
         let result = gameLengthInSeconds - elapsedTime()
-        return (result > 0) ? result.description : "00:00"
+        
+        let time = Int(result)
+        let secs = String(format: "%02d", time % 60)
+        let mins = String(time / 60)
+        let formattedString = "\(mins):\(secs)"
+
+        return (result > 0) ? formattedString : "0:00"
     }
     
     
