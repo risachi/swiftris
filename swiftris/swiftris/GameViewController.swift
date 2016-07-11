@@ -45,6 +45,12 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         swiftris.gameChoice = gameType
         swiftris.beginGame()
         
+        if gameType == GamePlayChoice.Classic {
+            self.navigationItem.title = "Endless"
+        } else {
+            self.navigationItem.title = "Time: 00:05"
+        }
+        
         // present the scene
         skView.presentScene(scene)
     }
