@@ -114,8 +114,13 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     // when time in a timed game has elapsed, gestures are disabled
     func didTick() {
         if gameType == GamePlayChoice.Timed {
-            view.userInteractionEnabled = !swiftris.detectTimedGameOver()
-            self.navigationItem.title = "Time: \(swiftris.timeRemaining())"
+            if swiftris.detectTimedGameOver() {
+                self.navigationItem.title = "Game Over"
+                view.userInteractionEnabled = false
+            } else {
+                self.navigationItem.title = "Time: \(swiftris.timeRemaining())"
+                view.userInteractionEnabled = true
+            }
         }
         swiftris.letShapeFall()
     }
