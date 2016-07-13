@@ -185,7 +185,9 @@
                             <constraint firstItem="r0Y-XF-gAu" firstAttribute="bottom" secondItem="PsM-zn-FL6" secondAttribute="bottom" id="tCP-K2-eHf"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="mDP-Ug-fDs"/>
+                    <navigationItem key="navigationItem" id="mDP-Ug-fDs">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Fjp-Yd-Dny"/>
+                    </navigationItem>
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -225,6 +227,6 @@
         <image name="whitebg" width="84" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="f0W-s3-hmq"/>
+        <segue reference="8Mt-SH-q1Z"/>
     </inferredMetricsTieBreakers>
 </document>

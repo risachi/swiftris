@@ -25,6 +25,8 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
         // configure the view
         // as! is a forced downcast; use only when you are sure the downcast will always succeed, otherwise this form will trigger a runtime error if you try to downcast to an incorrect class type
         // the view object is actually of type SKView but before downcasting our code treats is like a basic UIView; without downcasting, we are unable to access SKView methods and properties, such as presentScene(SKScene)
@@ -42,6 +44,13 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         swiftris.delegate = self
         swiftris.gameChoice = gameType
         swiftris.beginGame()
+        
+        // Set the title using the "ternary" operator ... ? :
+        // if game type is Classic, set the title to Endless. Otherwise, set it to "Time..."
+        self.navigationItem.title = (gameType == GamePlayChoice.Classic) ? "Endless" : "Time: 2:00"
+        self.navigationController?.navigationBar.barTintColor = UIColor.grayColor()
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor();
         
         // present the scene
         skView.presentScene(scene)
@@ -107,7 +116,15 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     // Handles all the actions which should happen on each tick.
     // when time in a timed game has elapsed, gestures are disabled
     func didTick() {
-        view.userInteractionEnabled = !swiftris.detectTimedGameOver()
+        if gameType == GamePlayChoice.Timed {
+            if swiftris.detectTimedGameOver() {
+                self.navigationItem.title = "Game Over"
+                view.userInteractionEnabled = false
+            } else {
+                self.navigationItem.title = "Time: \(swiftris.timeRemaining())"
+                view.userInteractionEnabled = true
+            }
+        }
         swiftris.letShapeFall()
     }
     
