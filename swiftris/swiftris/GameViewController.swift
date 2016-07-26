@@ -32,6 +32,8 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         // the view object is actually of type SKView but before downcasting our code treats is like a basic UIView; without downcasting, we are unable to access SKView methods and properties, such as presentScene(SKScene)
         let skView = view as! SKView
         skView.multipleTouchEnabled = false
+        skView.accessibilityTraits = UIAccessibilityTraitAllowsDirectInteraction
+        skView.isAccessibilityElement = true
         
         // create and configure the scene
         scene = GameScene(size: skView.bounds.size)
