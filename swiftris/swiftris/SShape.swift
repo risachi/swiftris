@@ -39,6 +39,10 @@ class SShape:Shape {
         return BlockColor.Yellow
     }
     
+    override func verbalDescription() -> String {
+        return "S shape"
+    }
+    
     override var blockRowColumnPositions: [Orientation: Array<(columnDiff: Int, rowDiff: Int)>] {
         return [
             Orientation.Zero:       [(0, 0), (0, 1), (1, 1), (1, 2)],

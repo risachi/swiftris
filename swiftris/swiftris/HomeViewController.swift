@@ -13,7 +13,7 @@ import SpriteKit
 
 class HomeViewController: UIViewController, SwiftrisDelegate, UIGestureRecognizerDelegate {
     
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         // we downcast (as!) from UIViewController to GameViewController because UIViewController doesn't have a "gameType" property, which we access below
         let gameViewController = segue.destinationViewController as! GameViewController
         

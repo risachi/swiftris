@@ -39,7 +39,10 @@ class ZShape:Shape {
     override func color() -> BlockColor {
         return BlockColor.Teal
     }
-
+    
+    override func verbalDescription() -> String {
+        return "Z shape"
+    }
     
     override var blockRowColumnPositions: [Orientation: Array<(columnDiff: Int, rowDiff: Int)>] {
         return [

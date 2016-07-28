@@ -14,8 +14,6 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     var swiftris: Swiftris!
     var panPointReference:CGPoint? //keep track of the last point on th screen at which a shape movement occurred or where a pan begins
     var gameType: GamePlayChoice!
-
-
     
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var levelLabel: UILabel!
@@ -32,8 +30,12 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         // the view object is actually of type SKView but before downcasting our code treats is like a basic UIView; without downcasting, we are unable to access SKView methods and properties, such as presentScene(SKScene)
         let skView = view as! SKView
         skView.multipleTouchEnabled = false
-        skView.accessibilityTraits = UIAccessibilityTraitAllowsDirectInteraction
-        skView.isAccessibilityElement = true
+        
+        if (UIAccessibilityIsVoiceOverRunning()) {
+            skView.accessibilityTraits = UIAccessibilityTraitAllowsDirectInteraction
+            skView.isAccessibilityElement = true
+            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, "does this even work");
+        }
         
         // create and configure the scene
         scene = GameScene(size: skView.bounds.size)

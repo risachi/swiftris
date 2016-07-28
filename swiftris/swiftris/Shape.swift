@@ -57,6 +57,10 @@ class Shape: Hashable, CustomStringConvertible {
         return BlockColor.random()
     }
     
+    func verbalDescription() -> String {
+        return ""
+    }
+    
     // The blocks comprising the shape
     var blocks = Array<Block>()
     // The current orientation of the shape
