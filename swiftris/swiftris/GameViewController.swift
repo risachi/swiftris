@@ -18,8 +18,6 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var levelLabel: UILabel!
     
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -149,7 +147,6 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         if (UIAccessibilityIsVoiceOverRunning()) {
             print(fallingShape);
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, fallingShape.verbalDescription());
-            
         }
     }
     

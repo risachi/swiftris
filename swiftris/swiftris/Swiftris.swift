@@ -234,12 +234,9 @@ class Swiftris {
         delegate?.gameShapeDidDrop(self)
     }
     
-    
-    
     func detectTimedGameOver() -> Bool {
         return (gameChoice == GamePlayChoice.Timed) && (gameLengthInSeconds < elapsedTime())
     }
-    
     
     func timeRemaining() -> String {
         let result = gameLengthInSeconds - elapsedTime()
@@ -251,7 +248,6 @@ class Swiftris {
 
         return (result > 0) ? formattedString : "0:00"
     }
-    
     
     func elapsedTime() -> Double {
         return startTime.timeIntervalSinceNow * -1

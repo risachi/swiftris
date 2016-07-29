@@ -61,6 +61,10 @@ class Shape: Hashable, CustomStringConvertible {
         return ""
     }
     
+    var verbalOrientation:String {
+        return "Block facing \(orientation)"
+    }
+    
     // The blocks comprising the shape
     var blocks = Array<Block>()
     // The current orientation of the shape
@@ -142,6 +146,8 @@ class Shape: Hashable, CustomStringConvertible {
         let newOrientation = Orientation.rotate(orientation, clockwise: true)
         rotateBlocks(newOrientation)
         orientation = newOrientation
+        
+        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, self.verbalOrientation);
     }
     
     final func rotateCounterClockwise() {
