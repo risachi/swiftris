@@ -24,6 +24,8 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         super.viewDidLoad()
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        //self.navigationController?.isAccessibilityElement = false;
+        //self.navigationController?.accessibilityLabel = nil;
         
         // configure the view
         // as! is a forced downcast; use only when you are sure the downcast will always succeed, otherwise this form will trigger a runtime error if you try to downcast to an incorrect class type
@@ -34,8 +36,6 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         if (UIAccessibilityIsVoiceOverRunning()) {
             skView.accessibilityTraits = UIAccessibilityTraitAllowsDirectInteraction
             skView.isAccessibilityElement = true
-            
-            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, "YES! This works");
         }
         
         // create and configure the scene
@@ -144,6 +144,12 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
             // this is useful during intermediate states when we animate or shift blocks, and perform calculations
             self.view.userInteractionEnabled = true
             self.scene.startTicking()
+        }
+        
+        if (UIAccessibilityIsVoiceOverRunning()) {
+            print(fallingShape);
+            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, fallingShape.verbalDescription());
+            
         }
     }
     
