@@ -34,7 +34,8 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         if (UIAccessibilityIsVoiceOverRunning()) {
             skView.accessibilityTraits = UIAccessibilityTraitAllowsDirectInteraction
             skView.isAccessibilityElement = true
-            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, "does this even work");
+            
+            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, "YES! This works");
         }
         
         // create and configure the scene
