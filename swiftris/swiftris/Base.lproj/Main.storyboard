@@ -156,6 +156,9 @@
                                     <constraint firstAttribute="width" secondItem="PsM-zn-FL6" secondAttribute="height" multiplier="443:383" id="Vjx-46-onA"/>
                                 </constraints>
                                 <state key="normal" image="Leaders"/>
+                                <connections>
+                                    <segue destination="mA7-ca-feP" kind="show" id="8f7-16-XR4"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -197,23 +200,23 @@
             <point key="canvasLocation" x="1731" y="428"/>
         </scene>
         <!--Game Center View Controller-->
-        <scene sceneID="cU1-Fy-Kng">
+        <scene sceneID="SwT-Ik-OXJ">
             <objects>
-                <viewController id="Ejc-Vq-zxa" customClass="GameCenterViewController" sceneMemberID="viewController">
+                <viewController id="mA7-ca-feP" customClass="GameCenterViewController" customModule="swiftris" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="0W8-EN-cIf"/>
-                        <viewControllerLayoutGuide type="bottom" id="NUL-7m-IeU"/>
+                        <viewControllerLayoutGuide type="top" id="iYJ-0q-PQl"/>
+                        <viewControllerLayoutGuide type="bottom" id="eZ1-GO-VjU"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Uee-lH-U4m">
+                    <view key="view" contentMode="scaleToFill" id="DHn-BJ-nyN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WFi-w4-hfR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="er7-aS-Cjh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1731" y="1136"/>
+            <point key="canvasLocation" x="1731" y="1134"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gMp-Zh-O4M">
