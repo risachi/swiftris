@@ -174,7 +174,7 @@ class Swiftris {
         score += pointsEarned
         
         if GKLocalPlayer.localPlayer().authenticated {
-            let gkScore = GKScore(leaderboardIdentifier: "leaderBoardID")
+            let gkScore = GKScore(leaderboardIdentifier: "scores")
             gkScore.value = Int64(score)
             GKScore.reportScores([gkScore], withCompletionHandler: ( { (error: NSError?) -> Void in
                 if (error != nil) {
