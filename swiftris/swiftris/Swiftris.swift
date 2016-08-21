@@ -22,6 +22,7 @@ let PreviewRow = 1
 let PointsPerLine = 10
 let LevelThreshold = 100
 
+
 protocol SwiftrisDelegate {
     // Invoked when the current round of Swiftris ends
     func gameDidEnd(swiftris: Swiftris)
@@ -73,6 +74,21 @@ class Swiftris {
         delegate?.gameDidBegin(self)
         
         self.startTime = NSDate()
+    }
+    
+    func reportScore(score: Int) {
+        if GKLocalPlayer.localPlayer().authenticated {
+            let gkScore = GKScore(leaderboardIdentifier: "scores")
+            gkScore.value = Int64(score)
+            GKScore.reportScores([gkScore], withCompletionHandler: ( { (error: NSError?) -> Void in
+                if (error != nil) {
+                    // handle error
+                    print("Error: " + error!.localizedDescription);
+                } else {
+                    print("Score reported: \(gkScore.value)")
+                }
+            }))
+        }
     }
     
     func newShape() -> (fallingShape:Shape?, nextShape:Shape?) {
@@ -135,6 +151,7 @@ class Swiftris {
     }
     
     func endGame() {
+        reportScore(score);
         score = 0
         level = 1
         delegate?.gameDidEnd(self)
@@ -172,19 +189,6 @@ class Swiftris {
         //if the user's points exceed their level times 1000, they level up and we inform the delegate
         let pointsEarned = removedLines.count * PointsPerLine * level
         score += pointsEarned
-        
-        if GKLocalPlayer.localPlayer().authenticated {
-            let gkScore = GKScore(leaderboardIdentifier: "scores")
-            gkScore.value = Int64(score)
-            GKScore.reportScores([gkScore], withCompletionHandler: ( { (error: NSError?) -> Void in
-                if (error != nil) {
-                    // handle error
-                    print("Error: " + error!.localizedDescription);
-                } else {
-                    print("Score reported: \(gkScore.value)")
-                }
-            }))
-        }
         
         if score >= level * LevelThreshold {
             level += 1

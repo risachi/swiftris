@@ -24,6 +24,8 @@ class GameCenterViewController: UIViewController, GKGameCenterControllerDelegate
     
     func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController) {
         // TODO: Code to restart the game
+        //gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
+        self.dismissViewControllerAnimated(true, completion: nil)
         print("gameCenterViewControllerDidFinish");
     }
 
