@@ -27,6 +27,7 @@ class HomeViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
                 self.loadAchievements();
                 self.gameCenterAddProgressToAnAchievement(100.00, achievementID: "break_25_rows")
                 self.gameCenterAddProgressToAnAchievement(100.00, achievementID: "break_44_rows")
+                self.gameCenterAddProgressToAnAchievement(50.00, achievementID: "break_90_rows")
                 }
             }
         }
@@ -70,13 +71,15 @@ class HomeViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         var allAchievements=[GKAchievement]()
         
         GKAchievement.loadAchievementsWithCompletionHandler({ (allAchievements, error:NSError?) -> Void in
-            if error != nil{
+            if error != nil {
                 print("Game Center: could not load achievements, error: \(error)")
             } else {
                 print("Game Center loaded achievements")
                 for anAchievement in allAchievements!  {
+                    print("  \(anAchievement)")
                     if let oneAchievement = anAchievement as? GKAchievement {
-                        self.achievements[oneAchievement.identifier!]=oneAchievement}
+                        self.achievements[oneAchievement.identifier!] = oneAchievement
+                    }
                 }
             }
         })
@@ -85,7 +88,7 @@ class HomeViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     // add progress to an achievement
     func gameCenterAddProgressToAnAchievement(progress:Double,achievementID:String) {
         print("func gameCenterAddProgressToAnAchievement successfully called")
-        var lookupAchievement:GKAchievement? = achievements[achievementID]
+        let lookupAchievement:GKAchievement? = achievements[achievementID]
             
         if let achievement = lookupAchievement {
             print("looking up achievement...")

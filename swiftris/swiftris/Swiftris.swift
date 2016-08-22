@@ -189,6 +189,7 @@ class Swiftris {
         //if the user's points exceed their level times 1000, they level up and we inform the delegate
         let pointsEarned = removedLines.count * PointsPerLine * level
         score += pointsEarned
+        reportAchievements(score)
         
         if score >= level * LevelThreshold {
             level += 1
@@ -336,5 +337,9 @@ class Swiftris {
             return
         }
         delegate?.gameShapeDidMove(self)
+    }
+    
+    func reportAchievements(score: Int) {
+        print("Calculating achievements for score \(score)")
     }
 }
