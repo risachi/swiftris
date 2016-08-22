@@ -11,8 +11,12 @@ import XCTest
 
 class swiftrisTests: XCTestCase {
     
+    var game : Swiftris = Swiftris();
+    
+    
     override func setUp() {
         super.setUp()
+        game = Swiftris()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
@@ -32,5 +36,14 @@ class swiftrisTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    func testCanCallASwiftrisFunction() {
+        game.reportAchievements(0)
+        XCTAssert(true)
+    }
+    
+//    func testCalculateAchievements1() {
+//        
+//    }
     
 }
