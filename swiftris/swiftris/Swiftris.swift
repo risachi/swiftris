@@ -345,6 +345,10 @@ class Swiftris {
     
     func calculateProgress(config: [Int], score: Int) -> [Double] {
         let rowsCleared = score / 10
-        return config.map { min(100, Double(rowsCleared) / Double($0) * 100) }
+        return config.map { roundToOneDecimal(min(100, Double(rowsCleared) / Double($0) * 100)) }
+    }
+    
+    func roundToOneDecimal(n: Double) -> Double {
+        return round(n * 10) / 10
     }
 }
