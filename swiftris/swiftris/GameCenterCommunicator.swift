@@ -45,35 +45,27 @@ class GameCenterCommunicator {
         })
     }
     
-    // add progress to an achievement
+    
     func gameCenterAddProgressToAnAchievement(progress:Double, achievementID:String) {
         let lookupAchievement:GKAchievement? = achievements[achievementID]
         
         if let achievement = lookupAchievement {
-            // found the achievement with the given achievementID, check if it already 100% done
             if achievement.percentComplete != 100 {
                 achievement.percentComplete = progress
                 if progress == 100.0  {
-                    print("DEBUG: achievement == 100, showing banner")
                     achievement.showsCompletionBanner = true
                 }
                 
                 // Try to report the progress to the Game Center
-                print("DEBUG: Reporting progress...")
                 GKAchievement.reportAchievements([achievement], withCompletionHandler:  { (error:NSError?) -> Void in
                     if error != nil {
                         print("ERROR: Couldn't save achievement (\(achievementID)) progress to \(progress) %")
-                    } else {
-                        print("DEBUG:   Success.")
                     }
                 })
-            } else {
-                print("DEBUG: Achievement (\(achievementID)) already granted, doing nothing.")}
+            }
         } else { // never added  progress for this achievement, create achievement now, recall to add progress
-            print("DEBUG: No achievement with ID (\(achievementID)) was found, no progress for this one was recorded yet. Creating achievement now.")
             achievements[achievementID] = GKAchievement(identifier: achievementID)
-            
-            // recursive recall this func now that the achievement exists
+            // Recursive recall this func now that the achievement exists
             gameCenterAddProgressToAnAchievement(progress, achievementID: achievementID)
         }
     }

@@ -345,8 +345,6 @@ class Swiftris {
         for (index, achievement) in achievements.enumerate() {
             let id = "break_\(achievement)_rows"
             let percent = progress[index]
-
-            print("  Submitting: \(id) is \(percent)")
             AppDelegate.gc.gameCenterAddProgressToAnAchievement(percent, achievementID: id)
         }
     }
