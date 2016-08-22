@@ -341,6 +341,16 @@ class Swiftris {
     
     func reportAchievements(score: Int) {
         print("Calculating achievements for score \(score)")
+        
+        let achievements = [25, 44, 90, 300, 700, 1000, 1844]
+        let progress     = calculateProgress(achievements, score: score)
+        for (index, achievement) in achievements.enumerate() {
+            let id = "break_\(achievement)_rows"
+            let percent = progress[index]
+
+            print("  Submitting: \(id) is \(percent)")
+//            gameCenterAddProgressToAnAchievement(percent, achievementID: id)
+        }
     }
     
     func calculateProgress(config: [Int], score: Int) -> [Double] {
@@ -351,4 +361,5 @@ class Swiftris {
     func roundToOneDecimal(n: Double) -> Double {
         return round(n * 10) / 10
     }
+    
 }

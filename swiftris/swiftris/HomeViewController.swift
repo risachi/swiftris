@@ -13,32 +13,26 @@ import GameKit
 
 class HomeViewController: UIViewController, SwiftrisDelegate, UIGestureRecognizerDelegate {
 
-    var achievements=[String:GKAchievement]()
+    var achievements = [String:GKAchievement]()
     
     
-    func authenticateLocalPlayer(){
-        var localPlayer = GKLocalPlayer.localPlayer()
+    func authenticateLocalPlayer() {
+        let localPlayer = GKLocalPlayer.localPlayer()
         localPlayer.authenticateHandler = {(viewController, error) -> Void in
             if ((viewController) != nil) {
                 self.presentViewController(viewController!, animated: true, completion: nil)
-            }else{
+            } else {
                 print("(GameCenter) Player authenticated: \(GKLocalPlayer.localPlayer().authenticated)")
-                
                 self.loadAchievements();
-                self.gameCenterAddProgressToAnAchievement(100.00, achievementID: "break_25_rows")
-                self.gameCenterAddProgressToAnAchievement(100.00, achievementID: "break_44_rows")
-                self.gameCenterAddProgressToAnAchievement(50.00, achievementID: "break_90_rows")
-                }
             }
         }
+    }
     
 
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-        
         if segue.identifier == "Classic" || segue.identifier == "Timed" {
             // we downcast (as!) from UIViewController to GameViewController because UIViewController doesn't have a "gameType" property, which we access below
             let gameViewController = segue.destinationViewController as! GameViewController
-        
             gameViewController.gameType = GamePlayChoice(rawValue: segue.identifier!)
         } else {
             let gameCenterViewController = segue.destinationViewController as! GameCenterViewController
@@ -48,6 +42,7 @@ class HomeViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     
     var scene: GameScene!
     var swiftris: Swiftris!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: false)
@@ -63,12 +58,9 @@ class HomeViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     func gameDidLevelUp(swiftris: Swiftris) {}
     
     
-
-    
-    
     func loadAchievements(){
         // load all prev. achievements for GameCenter for the user to progress can be added
-        var allAchievements=[GKAchievement]()
+        var allAchievements = [GKAchievement]()
         
         GKAchievement.loadAchievementsWithCompletionHandler({ (allAchievements, error:NSError?) -> Void in
             if error != nil {
