@@ -340,8 +340,6 @@ class Swiftris {
     }
     
     func reportAchievements(score: Int) {
-        print("Calculating achievements for score \(score)")
-        
         let achievements = [25, 44, 90, 300, 700, 1000, 1844]
         let progress     = calculateProgress(achievements, score: score)
         for (index, achievement) in achievements.enumerate() {
@@ -349,7 +347,7 @@ class Swiftris {
             let percent = progress[index]
 
             print("  Submitting: \(id) is \(percent)")
-//            gameCenterAddProgressToAnAchievement(percent, achievementID: id)
+            AppDelegate.gc.gameCenterAddProgressToAnAchievement(percent, achievementID: id)
         }
     }
     
