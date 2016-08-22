@@ -342,4 +342,9 @@ class Swiftris {
     func reportAchievements(score: Int) {
         print("Calculating achievements for score \(score)")
     }
+    
+    func calculateProgress(config: [Int], score: Int) -> [Double] {
+        let rowsCleared = score / 10
+        return config.map { min(100, Double(rowsCleared) / Double($0) * 100) }
+    }
 }

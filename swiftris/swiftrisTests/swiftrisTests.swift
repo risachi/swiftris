@@ -45,11 +45,11 @@ class swiftrisTests: XCTestCase {
     func testCalculateAchievements1() {
         let config_rows = [10, 20, 30]
         let user_score  = 150
-        let expected_progress = [100.0, 75.0, 50.0]
+        let expected_progress : [Double] = [100.0, 75.0, 50.0]
         
-        let actual_progress = game.calculateProgress(config_rows, user_score)
+        let actual_progress : [Double] = game.calculateProgress(config_rows, score: user_score)
         
-        XCTAssertEqual(expected_progress, actual_progress)
+        XCTAssertEqual(actual_progress, expected_progress)
     }
     
 }
