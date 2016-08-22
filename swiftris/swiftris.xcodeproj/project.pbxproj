@@ -27,6 +27,8 @@
 		42A9BB381D10E8E0009B7ACF /* ZShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A9BB371D10E8E0009B7ACF /* ZShape.swift */; };
 		42A9BB3A1D10F5EE009B7ACF /* Swiftris.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A9BB391D10F5EE009B7ACF /* Swiftris.swift */; };
 		42A9BB491D2215DA009B7ACF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A9BB481D2215DA009B7ACF /* HomeViewController.swift */; };
+		42DBE3581D6AC1C600D0A5E0 /* GameCenterCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DBE3571D6AC1C600D0A5E0 /* GameCenterCommunicator.swift */; };
+		42DBE3591D6AC1C600D0A5E0 /* GameCenterCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DBE3571D6AC1C600D0A5E0 /* GameCenterCommunicator.swift */; };
 		CCA885AE1D20F1AC0061A040 /* Sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = CCA885AD1D20F1AC0061A040 /* Sprites.atlas */; };
 		CCA885B51D20F1B40061A040 /* bomb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CCA885B01D20F1B40061A040 /* bomb.mp3 */; };
 		CCA885B61D20F1B40061A040 /* drop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CCA885B11D20F1B40061A040 /* drop.mp3 */; };
@@ -78,6 +80,7 @@
 		42A9BB371D10E8E0009B7ACF /* ZShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZShape.swift; sourceTree = "<group>"; };
 		42A9BB391D10F5EE009B7ACF /* Swiftris.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swiftris.swift; sourceTree = "<group>"; };
 		42A9BB481D2215DA009B7ACF /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		42DBE3571D6AC1C600D0A5E0 /* GameCenterCommunicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCenterCommunicator.swift; sourceTree = "<group>"; };
 		CCA885AD1D20F1AC0061A040 /* Sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Sprites.atlas; sourceTree = "<group>"; };
 		CCA885B01D20F1B40061A040 /* bomb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bomb.mp3; sourceTree = "<group>"; };
 		CCA885B11D20F1B40061A040 /* drop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = drop.mp3; sourceTree = "<group>"; };
@@ -136,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				42A9BADA1D051BFA009B7ACF /* AppDelegate.swift */,
+				42DBE3571D6AC1C600D0A5E0 /* GameCenterCommunicator.swift */,
 				42A9BADE1D051BFA009B7ACF /* GameScene.swift */,
 				42A9BAE01D051BFA009B7ACF /* GameViewController.swift */,
 				42A9BB481D2215DA009B7ACF /* HomeViewController.swift */,
@@ -334,6 +338,7 @@
 				42A9BB301D10E7D9009B7ACF /* LineShape.swift in Sources */,
 				42A9BB361D10E8AA009B7ACF /* SShape.swift in Sources */,
 				42A9BB2E1D10E6D0009B7ACF /* TShape.swift in Sources */,
+				42DBE3581D6AC1C600D0A5E0 /* GameCenterCommunicator.swift in Sources */,
 				42A9BB281D0BA46A009B7ACF /* Block.swift in Sources */,
 				42A9BAE11D051BFA009B7ACF /* GameViewController.swift in Sources */,
 				42A9BB381D10E8E0009B7ACF /* ZShape.swift in Sources */,
@@ -347,6 +352,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42A9BAF41D051BFA009B7ACF /* swiftrisTests.swift in Sources */,
+				42DBE3591D6AC1C600D0A5E0 /* GameCenterCommunicator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

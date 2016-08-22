@@ -10,7 +10,6 @@ import Foundation
 import GameKit
 
 class GameCenterViewController: UIViewController, GKGameCenterControllerDelegate {
-
     
     func showLeaderboard() {
         var gameCenterController = GKGameCenterViewController()
