@@ -8,9 +8,10 @@
 
 import UIKit
 import SpriteKit
+import GameKit
 
 
-class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
+class HomeViewController: UIViewController, UIGestureRecognizerDelegate, GKGameCenterControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,10 +25,26 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
             // we downcast (as!) from UIViewController to GameViewController because UIViewController doesn't have a "gameType" property, which we access below
             let gameViewController = segue.destinationViewController as! GameViewController
             gameViewController.gameType = GamePlayChoice(rawValue: segue.identifier!)
-        } else {
-            let gameCenterViewController = segue.destinationViewController as! GameCenterViewController
-            gameCenterViewController.showLeaderboard();
         }
+    }
+    
+    @IBAction func showGameCenter(sender: UIView!) {
+        let gameCenterController = GKGameCenterViewController()
+        gameCenterController.gameCenterDelegate = self
+        
+        if (sender.tag == 3) {
+            gameCenterController.viewState = .Leaderboards
+            gameCenterController.leaderboardTimeScope = .Today
+            gameCenterController.leaderboardIdentifier = "scores";
+        } else {
+            gameCenterController.viewState = .Achievements
+        }
+        self.presentViewController(gameCenterController, animated: true, completion: { _ in })
+    }
+    
+    func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController) {
+        gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
+        print("gameCenterViewControllerDidFinish");
     }
 }
 

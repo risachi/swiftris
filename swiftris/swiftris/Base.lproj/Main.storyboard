@@ -143,21 +143,24 @@
                                     <segue destination="BV1-FR-VrT" kind="show" identifier="Timed" id="f0W-s3-hmq"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r0Y-XF-gAu" userLabel="Achievements">
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r0Y-XF-gAu" userLabel="Achievements">
                                 <rect key="frame" x="165" y="426" width="129" height="112"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="r0Y-XF-gAu" secondAttribute="height" multiplier="443:383" id="3Da-Ax-zPR"/>
                                 </constraints>
                                 <state key="normal" image="Achievements"/>
+                                <connections>
+                                    <action selector="showGameCenter:" destination="dvZ-0P-xCe" eventType="touchUpInside" id="ye8-VU-1v9"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PsM-zn-FL6" userLabel="Leaders">
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PsM-zn-FL6" userLabel="Leaders">
                                 <rect key="frame" x="26" y="426" width="129" height="112"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="PsM-zn-FL6" secondAttribute="height" multiplier="443:383" id="Vjx-46-onA"/>
                                 </constraints>
                                 <state key="normal" image="Leaders"/>
                                 <connections>
-                                    <segue destination="mA7-ca-feP" kind="show" id="8f7-16-XR4"/>
+                                    <action selector="showGameCenter:" destination="dvZ-0P-xCe" eventType="touchUpInside" id="B7R-8F-LLf"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -198,25 +201,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="48n-2p-FG2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1731" y="428"/>
-        </scene>
-        <!--Game Center View Controller-->
-        <scene sceneID="SwT-Ik-OXJ">
-            <objects>
-                <viewController id="mA7-ca-feP" customClass="GameCenterViewController" customModule="swiftris" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="iYJ-0q-PQl"/>
-                        <viewControllerLayoutGuide type="bottom" id="eZ1-GO-VjU"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="DHn-BJ-nyN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="er7-aS-Cjh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1731" y="1134"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gMp-Zh-O4M">
