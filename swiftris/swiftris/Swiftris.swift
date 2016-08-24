@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import GameKit
+
 
 let NumColumns = 10
 let NumRows = 20
@@ -75,22 +75,7 @@ class Swiftris {
         
         self.startTime = NSDate()
     }
-    
-    func reportScore(score: Int) {
-        if GKLocalPlayer.localPlayer().authenticated {
-            let gkScore = GKScore(leaderboardIdentifier: "scores")
-            gkScore.value = Int64(score)
-            GKScore.reportScores([gkScore], withCompletionHandler: ( { (error: NSError?) -> Void in
-                if (error != nil) {
-                    // handle error
-                    print("Error: " + error!.localizedDescription);
-                } else {
-                    print("Score reported: \(gkScore.value)")
-                }
-            }))
-        }
-    }
-    
+        
     func newShape() -> (fallingShape:Shape?, nextShape:Shape?) {
         fallingShape = nextShape
         nextShape = Shape.random(PreviewColumn, startingRow: PreviewRow)
@@ -151,7 +136,7 @@ class Swiftris {
     }
     
     func endGame() {
-        reportScore(score);
+        AppDelegate.gc.reportScore(score);
         score = 0
         level = 1
         delegate?.gameDidEnd(self)

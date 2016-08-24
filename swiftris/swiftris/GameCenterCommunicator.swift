@@ -69,5 +69,20 @@ class GameCenterCommunicator {
             gameCenterAddProgressToAnAchievement(progress, achievementID: achievementID)
         }
     }
+    
+    func reportScore(score: Int) {
+        if GKLocalPlayer.localPlayer().authenticated {
+            let gkScore = GKScore(leaderboardIdentifier: "scores")
+            gkScore.value = Int64(score)
+            GKScore.reportScores([gkScore], withCompletionHandler: ( { (error: NSError?) -> Void in
+                if (error != nil) {
+                    // handle error
+                    print("Error: " + error!.localizedDescription);
+                } else {
+                    print("Score reported: \(gkScore.value)")
+                }
+            }))
+        }
+    }
 
 }
