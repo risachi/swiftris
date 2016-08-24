@@ -12,6 +12,7 @@ import GameKit
 
 class GameCenterCommunicator {
     var achievements = [String:GKAchievement]()
+    var highScore: Int64 = 0
     
     
     func authenticateLocalPlayer(aViewController: UIViewController) {
@@ -23,12 +24,13 @@ class GameCenterCommunicator {
                 } else {
                     print("(GameCenter) Player authenticated: \(GKLocalPlayer.localPlayer().authenticated)")
                     self.loadAchievements();
+                    self.loadHighScore();
                 }
         }
     }
     
     
-    func loadAchievements(){
+    func loadAchievements() {
         // load all prev. achievements for GameCenter for the user to progress can be added
         GKAchievement.loadAchievementsWithCompletionHandler({ (allAchievements, error:NSError?) -> Void in
             if error != nil {
@@ -43,6 +45,27 @@ class GameCenterCommunicator {
                 }
             }
         })
+    }
+    
+    
+    func loadHighScore() {
+        if (GKLocalPlayer.localPlayer().authenticated) {
+            GKLeaderboard.loadLeaderboardsWithCompletionHandler { objects, error in
+                if let e = error {
+                    print("ERROR loading scores: \(e)")
+                } else {
+                    print("Loading the high score: searching for the leaderboard...")
+                    if let leaderboards = objects! as [GKLeaderboard]? {
+                        for leaderboard in leaderboards {
+                            if let localPlayerScore = leaderboard.localPlayerScore {
+                                self.highScore = localPlayerScore.value
+                                print("  Got high score from the API: \(self.highScore)")
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     
     
@@ -72,16 +95,20 @@ class GameCenterCommunicator {
     
     func reportScore(score: Int) {
         if GKLocalPlayer.localPlayer().authenticated {
-            let gkScore = GKScore(leaderboardIdentifier: "scores")
-            gkScore.value = Int64(score)
-            GKScore.reportScores([gkScore], withCompletionHandler: ( { (error: NSError?) -> Void in
-                if (error != nil) {
-                    // handle error
-                    print("Error: " + error!.localizedDescription);
-                } else {
-                    print("Score reported: \(gkScore.value)")
-                }
-            }))
+            if Int64(score) > self.highScore {
+                self.highScore = Int64(score)
+                
+                let gkScore = GKScore(leaderboardIdentifier: "scores")
+                gkScore.value = Int64(score)
+                GKScore.reportScores([gkScore], withCompletionHandler: ( { (error: NSError?) -> Void in
+                    if (error != nil) {
+                        // handle error
+                        print("Error: " + error!.localizedDescription);
+                    } else {
+                        print("Score reported: \(gkScore.value)")
+                    }
+                }))
+            }
         }
     }
 
