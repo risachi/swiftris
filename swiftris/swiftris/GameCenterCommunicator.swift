@@ -31,7 +31,6 @@ class GameCenterCommunicator {
     
     
     func loadAchievements() {
-        // load all prev. achievements for GameCenter for the user to progress can be added
         GKAchievement.loadAchievementsWithCompletionHandler({ (allAchievements, error:NSError?) -> Void in
             if error != nil {
                 print("Game Center: could not load achievements, error: \(error)")
@@ -76,7 +75,12 @@ class GameCenterCommunicator {
             if achievement.percentComplete != 100 {
                 achievement.percentComplete = progress
                 if progress == 100.0  {
-                    achievement.showsCompletionBanner = true
+                    //achievement.showsCompletionBanner = true
+                    GKNotificationBanner.showBannerWithTitle("New Achievement!",
+                                        message: "Congratulations.",
+                                        duration: 7,
+                                        completionHandler: (nil)
+                    )
                 }
                 
                 // Try to report the progress to the Game Center
@@ -86,7 +90,7 @@ class GameCenterCommunicator {
                     }
                 })
             }
-        } else { // never added  progress for this achievement, create achievement now, recall to add progress
+        } else { // never added progress for this achievement, create achievement now, recall to add progress
             achievements[achievementID] = GKAchievement(identifier: achievementID)
             // Recursive recall this func now that the achievement exists
             gameCenterAddProgressToAnAchievement(progress, achievementID: achievementID)
