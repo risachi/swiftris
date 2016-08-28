@@ -174,6 +174,11 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         scene.animateCollapsingLines(swiftris.removeAllBlocks(), fallenBlocks: swiftris.removeAllBlocks()) {
             swiftris.beginGame()
         }
+        
+        if (UIAccessibilityIsVoiceOverRunning()) {
+            print("game over");
+            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, "Game Over");
+        }
     }
     
     func gameDidLevelUp(swiftris: Swiftris) {
@@ -184,6 +189,11 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
             scene.tickLengthMillis -= 50
         }
         scene.playSound("levelup.mp3")
+        
+        if (UIAccessibilityIsVoiceOverRunning()) {
+            print("leveled up");
+            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, "Leveled Up");
+        }
     }
     
     func gameShapeDidDrop(swiftris: Swiftris) {
@@ -208,13 +218,32 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
                 self.gameShapeDidLand(swiftris)
             }
             scene.playSound("bomb.mp3")
+            if (UIAccessibilityIsVoiceOverRunning()) {
+                print("row completed");
+                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, "Row Completed");
+            }
         } else {
             nextShape()
+            if (UIAccessibilityIsVoiceOverRunning()) {
+                print("shape landed");
+                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, "Shape Landed");
+            }
         }
     }
     
     // after a shape has moved, we have to redraw its representative sprites at its new location
     func gameShapeDidMove(swiftris: Swiftris) {
         scene.redrawShape(swiftris.fallingShape!) {}
+    }
+    
+    
+    // when navigating back to HomeViewController from GameViewController, the game continues to run. Not sure if this is a view controller problem or a GameScene problem.
+    override func willMoveToParentViewController(parent: UIViewController?) {
+        super.willMoveToParentViewController(parent)
+        if parent == nil {
+            swiftris.endGame()
+            print("navigated away")
+            self.navigationController!.popViewControllerAnimated(true)
+        }
     }
 }
