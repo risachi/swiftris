@@ -150,7 +150,7 @@
                                 </constraints>
                                 <state key="normal" image="Achievements"/>
                                 <connections>
-                                    <action selector="showGameCenter:" destination="dvZ-0P-xCe" eventType="touchUpInside" id="ye8-VU-1v9"/>
+                                    <action selector="showGameCenterAchievements:" destination="dvZ-0P-xCe" eventType="touchUpInside" id="8be-cM-b8v"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PsM-zn-FL6" userLabel="Leaders">
@@ -160,7 +160,7 @@
                                 </constraints>
                                 <state key="normal" image="Leaders"/>
                                 <connections>
-                                    <action selector="showGameCenter:" destination="dvZ-0P-xCe" eventType="touchUpInside" id="B7R-8F-LLf"/>
+                                    <action selector="showGameCenterLeaderboards:" destination="dvZ-0P-xCe" eventType="touchUpInside" id="h8v-y6-iLz"/>
                                 </connections>
                             </button>
                         </subviews>

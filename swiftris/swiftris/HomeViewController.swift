@@ -28,18 +28,25 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, GKGameC
         }
     }
     
-    @IBAction func showGameCenter(sender: UIView!) {
+    @IBAction func showGameCenterAchievements(sender: UIView!) {
+        showGameCenter(.Achievements)
+    }
+    
+    @IBAction func showGameCenterLeaderboards(sender: UIView!) {
+        showGameCenter(.Leaderboards)
+    }
+    
+    func showGameCenter(viewState: GKGameCenterViewControllerState) {
         let gameCenterController = GKGameCenterViewController()
         gameCenterController.gameCenterDelegate = self
+        gameCenterController.viewState = viewState
         
-        if (sender.tag == 3) {
-            gameCenterController.viewState = .Leaderboards
+        if (viewState == .Leaderboards) {
             gameCenterController.leaderboardTimeScope = .Today
             gameCenterController.leaderboardIdentifier = "scores";
-        } else {
-            gameCenterController.viewState = .Achievements
         }
-        self.presentViewController(gameCenterController, animated: true, completion: { _ in })
+        
+        self.presentViewController(gameCenterController, animated: true, completion: nil)
     }
     
     func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController) {
