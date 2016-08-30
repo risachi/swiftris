@@ -8,10 +8,15 @@
 
 import UIKit
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    // The global singleton Game Center adapter - it encapsulates all the
+    // complexity of dealing with the Game Center.
+    static let gc: GameCenterCommunicator = GameCenterCommunicator()
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
