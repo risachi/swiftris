@@ -22,6 +22,7 @@ let PreviewRow = 1
 let PointsPerLine = 10
 let LevelThreshold = 100
 
+
 protocol SwiftrisDelegate {
     // Invoked when the current round of Swiftris ends
     func gameDidEnd(swiftris: Swiftris)
@@ -74,7 +75,7 @@ class Swiftris {
         
         self.startTime = NSDate()
     }
-    
+        
     func newShape() -> (fallingShape:Shape?, nextShape:Shape?) {
         fallingShape = nextShape
         nextShape = Shape.random(PreviewColumn, startingRow: PreviewRow)
@@ -135,6 +136,7 @@ class Swiftris {
     }
     
     func endGame() {
+        AppDelegate.gc.reportScore(score);
         score = 0
         level = 1
         delegate?.gameDidEnd(self)
@@ -172,6 +174,8 @@ class Swiftris {
         //if the user's points exceed their level times 1000, they level up and we inform the delegate
         let pointsEarned = removedLines.count * PointsPerLine * level
         score += pointsEarned
+        reportAchievements(score)
+        
         if score >= level * LevelThreshold {
             level += 1
             delegate?.gameDidLevelUp(self)
@@ -316,4 +320,24 @@ class Swiftris {
         }
         delegate?.gameShapeDidMove(self)
     }
+    
+    func reportAchievements(score: Int) {
+        let achievements = [25, 44, 90, 300, 700, 1000, 1844]
+        let progress     = calculateProgress(achievements, score: score)
+        for (index, achievement) in achievements.enumerate() {
+            let id = "break_\(achievement)_rows"
+            let percent = progress[index]
+            AppDelegate.gc.gameCenterAddProgressToAnAchievement(percent, achievementID: id)
+        }
+    }
+    
+    func calculateProgress(config: [Int], score: Int) -> [Double] {
+        let rowsCleared = score / 10
+        return config.map { roundToOneDecimal(min(100, Double(rowsCleared) / Double($0) * 100)) }
+    }
+    
+    func roundToOneDecimal(n: Double) -> Double {
+        return round(n * 10) / 10
+    }
+    
 }
