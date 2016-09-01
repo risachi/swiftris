@@ -54,6 +54,7 @@ class GameCenterCommunicator {
             if error != nil {
                 print("   Couldn't: \(error)")
             } else {
+                self.loadAchievements()
                 print("   Done.")
             }
         })
