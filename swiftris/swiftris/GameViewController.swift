@@ -222,13 +222,13 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
             scene.playSound("bomb.mp3")
             if (UIAccessibilityIsVoiceOverRunning()) {
                 print("row completed");
-                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, "Row Completed");
+                AppDelegate.accessibility.say("Row Completed");
             }
         } else {
             nextShape()
             if (UIAccessibilityIsVoiceOverRunning()) {
                 print("shape landed");
-                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, "Shape Landed");
+                AppDelegate.accessibility.say("Shape Landed")
             }
         }
     }
@@ -240,12 +240,12 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     
     
     // when navigating back to HomeViewController from GameViewController, the game continues to run. Not sure if this is a view controller problem or a GameScene problem.
-    override func willMoveToParentViewController(parent: UIViewController?) {
-        super.willMoveToParentViewController(parent)
-        if parent == nil {
-            swiftris.endGame()
-            print("navigated away")
-            self.navigationController!.popViewControllerAnimated(true)
-        }
-    }
+//    override func willMoveToParentViewController(parent: UIViewController?) {
+//        super.willMoveToParentViewController(parent)
+//        if parent == nil {
+//            swiftris.endGame()
+//            print("navigated away")
+//            self.navigationController!.popViewControllerAnimated(true)
+//        }
+//    }
 }

@@ -38,9 +38,7 @@ class GameCenterCommunicator {
                 print("Game Center loaded achievements")
                 for anAchievement in allAchievements!  {
                     print("  \(anAchievement)")
-                    if let oneAchievement = anAchievement as? GKAchievement {
-                        self.achievements[oneAchievement.identifier!] = oneAchievement
-                    }
+                    self.achievements[anAchievement.identifier!] = anAchievement
                 }
             }
         })
@@ -88,13 +86,10 @@ class GameCenterCommunicator {
         if let achievement = lookupAchievement {
             if achievement.percentComplete != 100 {
                 achievement.percentComplete = progress
+                
                 if progress == 100.0  {
                     //achievement.showsCompletionBanner = true
-                    GKNotificationBanner.showBannerWithTitle("New Achievement!",
-                                        message: "Congratulations.",
-                                        duration: 7,
-                                        completionHandler: (nil)
-                    )
+                    notifyForNewAchievement()
                 }
                 
                 // Try to report the progress to the Game Center
@@ -129,5 +124,18 @@ class GameCenterCommunicator {
             }
         }
     }
-
+    
+    
+    private func notifyForNewAchievement() {
+        if (AppDelegate.accessibility.voiceOverIsRunning()) {
+            AppDelegate.accessibility.say("Congratulations, you have a new achievement!")
+        } else {
+            GKNotificationBanner.showBannerWithTitle("New Achievement!",
+                                                     message: "Congratulations.",
+                                                     duration: 7,
+                                                     completionHandler: (nil)
+            )
+        }
+    }
+    
 }
