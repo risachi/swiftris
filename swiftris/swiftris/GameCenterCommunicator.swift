@@ -134,8 +134,8 @@ class GameCenterCommunicator {
     
     
     private func notifyForNewAchievement() {
-        if (AppDelegate.accessibility.voiceOverIsRunning()) {
-            AppDelegate.accessibility.say("Congratulations, you have a new achievement!")
+        if (AppDelegate.a11y.voiceOverIsRunning()) {
+            AppDelegate.a11y.say("Congratulations, you have a new achievement!")
         } else {
             GKNotificationBanner.showBannerWithTitle("New Achievement!",
                                                      message: "Congratulations.",

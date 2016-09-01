@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static let gc: GameCenterCommunicator = GameCenterCommunicator()
     
     // Global singleton Accessibility utility
-    static let accessibility: AccessibilityUtil = AccessibilityUtil()
+    static let a11y: AccessibilityUtil = AccessibilityUtil()
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {

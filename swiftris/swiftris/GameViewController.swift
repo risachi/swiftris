@@ -223,13 +223,13 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
             scene.playSound("bomb.mp3")
             if (UIAccessibilityIsVoiceOverRunning() && !beQuiet) {
                 print("row completed");
-                AppDelegate.accessibility.say("Row Completed");
+                AppDelegate.a11y.say("Row Completed");
             }
         } else {
             nextShape(quietly: beQuiet)
             if (UIAccessibilityIsVoiceOverRunning() && !beQuiet) {
                 print("shape landed");
-                AppDelegate.accessibility.say("Shape Landed")
+                AppDelegate.a11y.say("Shape Landed")
             }
         }
     }
