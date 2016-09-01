@@ -47,6 +47,19 @@ class GameCenterCommunicator {
     }
     
     
+    func resetAchievements() {
+        print("DEBUG: Resetting local player's achievements")
+        
+        GKAchievement.resetAchievementsWithCompletionHandler({ (error: NSError?) -> Void in
+            if error != nil {
+                print("   Couldn't: \(error)")
+            } else {
+                print("   Done.")
+            }
+        })
+    }
+    
+    
     func loadHighScore() {
         if (GKLocalPlayer.localPlayer().authenticated) {
             GKLeaderboard.loadLeaderboardsWithCompletionHandler { objects, error in

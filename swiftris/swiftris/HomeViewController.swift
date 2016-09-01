@@ -33,6 +33,8 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, GKGameC
     }
 
     @IBAction func showGameCenterLeaderboards(sender: UIView!) {
+        // TODO: Remove this hack
+        AppDelegate.gc.resetAchievements()
         showGameCenter(.Leaderboards)
     }
 
