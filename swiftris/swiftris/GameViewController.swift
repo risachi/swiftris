@@ -131,7 +131,7 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         swiftris.letShapeFall()
     }
     
-    func nextShape() {
+    func nextShape(quietly beQuiet: Bool) {
         let newShapes = swiftris.newShape()
         guard let fallingShape = newShapes.fallingShape else {
             return
@@ -144,7 +144,7 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
             self.scene.startTicking()
         }
         
-        if (UIAccessibilityIsVoiceOverRunning()) {
+        if (UIAccessibilityIsVoiceOverRunning() && !beQuiet) {
             print(fallingShape);
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, fallingShape.verbalDescription());
         }
@@ -159,10 +159,10 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         // The following is false when restarting a new game
         if swiftris.nextShape != nil && swiftris.nextShape!.blocks[0].sprite == nil {
             scene.addPreviewShapeToScene(swiftris.nextShape!) {
-                self.nextShape()
+                self.nextShape(quietly: false)
             }
         } else {
-            nextShape()
+            nextShape(quietly: false)
         }
     }
     
@@ -212,21 +212,22 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         scene.stopTicking()
         self.view.userInteractionEnabled = false
 
-        let removedLines = swiftris.removeCompletedLines()
-        if removedLines.linesRemoved.count > 0 {
+        let (linesRemoved, fallenBlocks, beQuiet) = swiftris.removeCompletedLines()
+        
+        if linesRemoved.count > 0 {
             self.scoreLabel.text = "\(swiftris.score)"
-            scene.animateCollapsingLines(removedLines.linesRemoved, fallenBlocks:removedLines.fallenBlocks) {
+            scene.animateCollapsingLines(linesRemoved, fallenBlocks:fallenBlocks) {
                 // a recursive call: one which invokes itself
                 self.gameShapeDidLand(swiftris)
             }
             scene.playSound("bomb.mp3")
-            if (UIAccessibilityIsVoiceOverRunning()) {
+            if (UIAccessibilityIsVoiceOverRunning() && !beQuiet) {
                 print("row completed");
                 AppDelegate.accessibility.say("Row Completed");
             }
         } else {
-            nextShape()
-            if (UIAccessibilityIsVoiceOverRunning()) {
+            nextShape(quietly: beQuiet)
+            if (UIAccessibilityIsVoiceOverRunning() && !beQuiet) {
                 print("shape landed");
                 AppDelegate.accessibility.say("Shape Landed")
             }

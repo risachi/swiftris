@@ -142,9 +142,9 @@ class Swiftris {
         delegate?.gameDidEnd(self)
     }
     
-    //this function returns a tuple composed of two arrays (linesRemoved and fallenBlocks)
     //linesRemoved maintains each row of blocks which the user has filled in
-    func removeCompletedLines() -> (linesRemoved: Array<Array<Block>>, fallenBlocks: Array<Array<Block>>) {
+    func removeCompletedLines() -> (linesRemoved: Array<Array<Block>>, fallenBlocks: Array<Array<Block>>, beQuiet: Bool) {
+        var beQuiet: Bool
         var removedLines = Array<Array<Block>>()
         for row in (1..<NumRows).reverse() {
             var rowOfBlocks = Array<Block>()
@@ -165,16 +165,16 @@ class Swiftris {
             }
         }
         
-        //did we recover any lines? if not, we return empty arrays
+        // Did we recover any lines? if not, we return empty arrays
         if removedLines.count == 0 {
-            return ([], [])
+            return ([], [], false)
         }
         
         //we add points to the player's score based on the number of lines they've created and their level
         //if the user's points exceed their level times 1000, they level up and we inform the delegate
         let pointsEarned = removedLines.count * PointsPerLine * level
         score += pointsEarned
-        reportAchievements(score)
+        beQuiet = reportAchievements(score)
         
         if score >= level * LevelThreshold {
             level += 1
@@ -205,7 +205,7 @@ class Swiftris {
                 fallenBlocks.append(fallenBlocksArray)
             }
         }
-        return (removedLines, fallenBlocks)
+        return (removedLines, fallenBlocks, beQuiet)
     }
     
     //this function allows the user interface to remove the blocks
@@ -321,14 +321,23 @@ class Swiftris {
         delegate?.gameShapeDidMove(self)
     }
     
-    func reportAchievements(score: Int) {
+    //
+    // Return true if a new achievement was earned
+    //
+    func reportAchievements(score: Int) -> Bool {
+        var newAchievementWasEarned = false
+        
         let achievements = [25, 44, 90, 300, 700, 1000, 1844]
         let progress     = calculateProgress(achievements, score: score)
         for (index, achievement) in achievements.enumerate() {
             let id = "break_\(achievement)_rows"
             let percent = progress[index]
-            AppDelegate.gc.gameCenterAddProgressToAnAchievement(percent, achievementID: id)
+            if (AppDelegate.gc.addProgressToAnAchievement(percent, achievementID: id)) {
+                newAchievementWasEarned = true
+            }
         }
+        
+        return newAchievementWasEarned
     }
     
     func calculateProgress(config: [Int], score: Int) -> [Double] {

@@ -80,7 +80,11 @@ class GameCenterCommunicator {
     }
     
     
-    func gameCenterAddProgressToAnAchievement(progress:Double, achievementID:String) {
+    //
+    // Return true if a new achievement was earned
+    //
+    func addProgressToAnAchievement(progress:Double, achievementID:String) -> Bool {
+        var newAchievementWasEarned = false
         let lookupAchievement:GKAchievement? = achievements[achievementID]
         
         if let achievement = lookupAchievement {
@@ -90,6 +94,7 @@ class GameCenterCommunicator {
                 if progress == 100.0  {
                     //achievement.showsCompletionBanner = true
                     notifyForNewAchievement()
+                    newAchievementWasEarned = true
                 }
                 
                 // Try to report the progress to the Game Center
@@ -102,8 +107,10 @@ class GameCenterCommunicator {
         } else { // never added progress for this achievement, create achievement now, recall to add progress
             achievements[achievementID] = GKAchievement(identifier: achievementID)
             // Recursive recall this func now that the achievement exists
-            gameCenterAddProgressToAnAchievement(progress, achievementID: achievementID)
+            addProgressToAnAchievement(progress, achievementID: achievementID)
         }
+        
+        return newAchievementWasEarned
     }
     
     func reportScore(score: Int) {
