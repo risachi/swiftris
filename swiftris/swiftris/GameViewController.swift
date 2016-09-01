@@ -31,7 +31,7 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         let skView = view as! SKView
         skView.multipleTouchEnabled = false
         
-        if (UIAccessibilityIsVoiceOverRunning()) {
+        if (AppDelegate.a11y.voiceOverIsRunning()) {
             skView.accessibilityTraits = UIAccessibilityTraitAllowsDirectInteraction
             skView.isAccessibilityElement = true
         }
@@ -144,9 +144,9 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
             self.scene.startTicking()
         }
         
-        if (UIAccessibilityIsVoiceOverRunning() && !beQuiet) {
+        if (!beQuiet) {
             print(fallingShape);
-            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, fallingShape.verbalDescription());
+            AppDelegate.a11y.say(fallingShape.verbalDescription());
         }
     }
     
@@ -168,19 +168,15 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     
     func gameDidEnd(swiftris: Swiftris) {
         view.userInteractionEnabled = false
+        
         scene.stopTicking()
-        
         scene.playSound("gameover.mp3")
-        
-        
         scene.animateCollapsingLines(swiftris.removeAllBlocks(), fallenBlocks: swiftris.removeAllBlocks()) {
             swiftris.beginGame()
         }
         
-        if (UIAccessibilityIsVoiceOverRunning()) {
-            print("game over");
-            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, "Game Over");
-        }
+        print("game over");
+        AppDelegate.a11y.say("Game Over")
     }
     
     func gameDidLevelUp(swiftris: Swiftris) {
@@ -190,12 +186,10 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         } else if scene.tickLengthMillis > 50 {
             scene.tickLengthMillis -= 50
         }
+
+        print("leveled up");
         scene.playSound("levelup.mp3")
-        
-        if (UIAccessibilityIsVoiceOverRunning()) {
-            print("leveled up");
-            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, "Leveled Up");
-        }
+        AppDelegate.a11y.say("Leveled Up");
     }
     
     func gameShapeDidDrop(swiftris: Swiftris) {
@@ -221,13 +215,13 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
                 self.gameShapeDidLand(swiftris)
             }
             scene.playSound("bomb.mp3")
-            if (UIAccessibilityIsVoiceOverRunning() && !beQuiet) {
+            if (!beQuiet) {
                 print("row completed");
                 AppDelegate.a11y.say("Row Completed");
             }
         } else {
             nextShape(quietly: beQuiet)
-            if (UIAccessibilityIsVoiceOverRunning() && !beQuiet) {
+            if (!beQuiet) {
                 print("shape landed");
                 AppDelegate.a11y.say("Shape Landed")
             }

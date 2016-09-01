@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 let NumColumns = 10
 let NumRows = 20
@@ -290,7 +289,7 @@ class Swiftris {
         }
         shape.rotateClockwise()
         guard detectIllegalPlacement() == false else {
-            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, "Cannot Move Further");
+            AppDelegate.a11y.say("Cannot move further")
             shape.rotateCounterClockwise()
             return
         }

@@ -17,8 +17,10 @@ struct AccessibilityUtil {
     }
 
     func say(this: String) {
-        print("DEBUG: say(\(this))")
-        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, this);
+        if self.voiceOverIsRunning() {
+            print("DEBUG: say(\(this))")
+            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, this)
+        }
     }
     
 }

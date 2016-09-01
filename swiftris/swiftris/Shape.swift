@@ -8,6 +8,7 @@
 
 import SpriteKit
 
+
 let NumOrientations: UInt32 = 4
 
 enum Orientation: Int, CustomStringConvertible {
@@ -147,7 +148,7 @@ class Shape: Hashable, CustomStringConvertible {
         rotateBlocks(newOrientation)
         orientation = newOrientation
         
-        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, self.verbalOrientation);
+        AppDelegate.a11y.say(self.verbalOrientation);
     }
     
     final func rotateCounterClockwise() {
