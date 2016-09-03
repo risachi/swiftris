@@ -18,6 +18,11 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, GKGameC
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         AppDelegate.gc.authenticateLocalPlayer(self);
     }
+    
+    
+    override func viewWillAppear(animated: Bool) {
+         self.navigationController!.navigationBar.hidden = true
+    }
 
 
     override func prepareForSegue(segue: (UIStoryboardSegue!), sender: AnyObject!) {
@@ -28,14 +33,17 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, GKGameC
         }
     }
 
+    
     @IBAction func showGameCenterAchievements(sender: UIView!) {
         showGameCenter(.Achievements)
     }
 
+    
     @IBAction func showGameCenterLeaderboards(sender: UIView!) {
         showGameCenter(.Leaderboards)
     }
 
+    
     func showGameCenter(viewState: GKGameCenterViewControllerState) {
         let gameCenterController = GKGameCenterViewController()
         gameCenterController.gameCenterDelegate = self
@@ -49,6 +57,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, GKGameC
         self.presentViewController(gameCenterController, animated: true, completion: nil)
     }
 
+    
     func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController) {
         gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
         print("gameCenterViewControllerDidFinish");
