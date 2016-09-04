@@ -6,14 +6,18 @@
 //  Copyright (c) 2016 Bloc. All rights reserved.
 //
 
-import UIKit
+import AVFoundation
 import SpriteKit
+import UIKit
+
 
 class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognizerDelegate {
     var scene: GameScene!
     var swiftris: Swiftris!
     var panPointReference:CGPoint? //keep track of the last point on th screen at which a shape movement occurred or where a pan begins
     var gameType: GamePlayChoice!
+    var player: AVAudioPlayer?
+    
     
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var levelLabel: UILabel!
@@ -74,7 +78,19 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     }
     
 
-    
+    func playBackgoundMusic() {
+        let url = NSBundle.mainBundle().URLForResource("theme", withExtension: "mp3")!
+        
+        do {
+            player = try AVAudioPlayer(contentsOfURL: url)
+            guard let player = player else { return }
+            
+            player.prepareToPlay()
+            player.play()
+        } catch let error as NSError {
+            print(error.description)
+        }
+    }
     
 
     override func prefersStatusBarHidden() -> Bool {
@@ -182,10 +198,14 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         } else {
             nextShape(quietly: false)
         }
+        
+        playBackgoundMusic()
     }
     
     func gameDidEnd(swiftris: Swiftris) {
+        print("gameDidEnd")
         view.userInteractionEnabled = false
+        player?.stop()
         
         scene.stopTicking()
         scene.playSound("gameover.mp3")
