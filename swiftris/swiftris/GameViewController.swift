@@ -189,11 +189,8 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         
         scene.stopTicking()
         scene.playSound("gameover.mp3")
-        scene.animateCollapsingLines(swiftris.removeAllBlocks(), fallenBlocks: swiftris.removeAllBlocks()) {
-            swiftris.beginGame()
-        }
+        scene.animateCollapsingLines(swiftris.removeAllBlocks(), fallenBlocks: swiftris.removeAllBlocks()) {}
         
-        print("game over");
         AppDelegate.a11y.say("Game Over")
     }
     
