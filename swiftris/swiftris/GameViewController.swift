@@ -19,17 +19,11 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     @IBOutlet weak var levelLabel: UILabel!
 
     
-    override func viewWillAppear(animated: Bool) {
-        self.navigationController!.navigationBar.hidden = false
-    }
-
-    
     override func viewDidLoad() {
+        print("viewDidLoad()")
         super.viewDidLoad()
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        //self.navigationController?.isAccessibilityElement = false;
-        //self.navigationController?.accessibilityLabel = nil;
         
         // configure the view
         // as! is a forced downcast; use only when you are sure the downcast will always succeed, otherwise this form will trigger a runtime error if you try to downcast to an incorrect class type
@@ -49,6 +43,21 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         // a closure for the tick property of GameScene.swift:
         scene.tick = didTick
         
+        self.navigationController!.navigationBar.hidden = false
+        self.navigationController?.navigationBar.barTintColor = UIColor.grayColor()
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor();
+        
+        // present the scene
+        skView.presentScene(scene)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        print("viewWillAppear()")
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        print("viewDidAppear()")
         swiftris = Swiftris()
         swiftris.delegate = self
         swiftris.gameChoice = gameType
@@ -57,13 +66,16 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         // Set the title using the "ternary" operator ... ? :
         // if game type is Classic, set the title to Endless. Otherwise, set it to "Time..."
         self.navigationItem.title = (gameType == GamePlayChoice.Classic) ? "Endless" : "Time: 2:00"
-        self.navigationController?.navigationBar.barTintColor = UIColor.grayColor()
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor();
-        
-        // present the scene
-        skView.presentScene(scene)
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        print("viewWillDisappear()")
+        self.swiftris.endGame()
+    }
+    
+
+    
+    
 
     override func prefersStatusBarHidden() -> Bool {
         return true
