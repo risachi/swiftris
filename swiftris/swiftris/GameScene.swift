@@ -17,7 +17,7 @@ class GameScene: SKScene {
     
     let gameLayer = SKNode() //sits above the background visuals
     let shapeLayer = SKNode() //sits above gameLayer
-    let LayerPosition = CGPoint(x: 6, y: -6) // gives an offset from the edge of the screen
+    let LayerPosition = CGPoint(x: 6, y: -18) // gives an offset from the edge of the screen
     
     var tick:(() -> ())? // tick is a closure which takes no parameters and returns nothing. Its question mark indicates that it's optional and may be nil
     var tickLengthMillis = TickLengthLevelOne //GameScene's curring tick length (set to TickLengthLevelOne by default)
