@@ -216,7 +216,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yzo-qV-4NZ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kQc-FO-M9s">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="kQc-FO-M9s">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
