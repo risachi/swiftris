@@ -14,24 +14,27 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     var swiftris: Swiftris!
     var panPointReference:CGPoint? //keep track of the last point on th screen at which a shape movement occurred or where a pan begins
     var gameType: GamePlayChoice!
-
-
     
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var levelLabel: UILabel!
-    
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        //self.navigationController?.isAccessibilityElement = false;
+        //self.navigationController?.accessibilityLabel = nil;
         
         // configure the view
         // as! is a forced downcast; use only when you are sure the downcast will always succeed, otherwise this form will trigger a runtime error if you try to downcast to an incorrect class type
         // the view object is actually of type SKView but before downcasting our code treats is like a basic UIView; without downcasting, we are unable to access SKView methods and properties, such as presentScene(SKScene)
         let skView = view as! SKView
         skView.multipleTouchEnabled = false
+        
+        if (AppDelegate.a11y.voiceOverIsRunning()) {
+            skView.accessibilityTraits = UIAccessibilityTraitAllowsDirectInteraction
+            skView.isAccessibilityElement = true
+        }
         
         // create and configure the scene
         scene = GameScene(size: skView.bounds.size)
@@ -128,7 +131,7 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         swiftris.letShapeFall()
     }
     
-    func nextShape() {
+    func nextShape(quietly beQuiet: Bool) {
         let newShapes = swiftris.newShape()
         guard let fallingShape = newShapes.fallingShape else {
             return
@@ -139,6 +142,11 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
             // this is useful during intermediate states when we animate or shift blocks, and perform calculations
             self.view.userInteractionEnabled = true
             self.scene.startTicking()
+        }
+        
+        if (!beQuiet) {
+            print(fallingShape);
+            AppDelegate.a11y.say(fallingShape.verbalDescription());
         }
     }
     
@@ -151,23 +159,24 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         // The following is false when restarting a new game
         if swiftris.nextShape != nil && swiftris.nextShape!.blocks[0].sprite == nil {
             scene.addPreviewShapeToScene(swiftris.nextShape!) {
-                self.nextShape()
+                self.nextShape(quietly: false)
             }
         } else {
-            nextShape()
+            nextShape(quietly: false)
         }
     }
     
     func gameDidEnd(swiftris: Swiftris) {
         view.userInteractionEnabled = false
+        
         scene.stopTicking()
-        
         scene.playSound("gameover.mp3")
-        
-        
         scene.animateCollapsingLines(swiftris.removeAllBlocks(), fallenBlocks: swiftris.removeAllBlocks()) {
             swiftris.beginGame()
         }
+        
+        print("game over");
+        AppDelegate.a11y.say("Game Over")
     }
     
     func gameDidLevelUp(swiftris: Swiftris) {
@@ -177,7 +186,10 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         } else if scene.tickLengthMillis > 50 {
             scene.tickLengthMillis -= 50
         }
+
+        print("leveled up");
         scene.playSound("levelup.mp3")
+        AppDelegate.a11y.say("Leveled Up");
     }
     
     func gameShapeDidDrop(swiftris: Swiftris) {
@@ -194,16 +206,25 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         scene.stopTicking()
         self.view.userInteractionEnabled = false
 
-        let removedLines = swiftris.removeCompletedLines()
-        if removedLines.linesRemoved.count > 0 {
+        let (linesRemoved, fallenBlocks, beQuiet) = swiftris.removeCompletedLines()
+        
+        if linesRemoved.count > 0 {
             self.scoreLabel.text = "\(swiftris.score)"
-            scene.animateCollapsingLines(removedLines.linesRemoved, fallenBlocks:removedLines.fallenBlocks) {
+            scene.animateCollapsingLines(linesRemoved, fallenBlocks:fallenBlocks) {
                 // a recursive call: one which invokes itself
                 self.gameShapeDidLand(swiftris)
             }
             scene.playSound("bomb.mp3")
+            if (!beQuiet) {
+                print("row completed");
+                AppDelegate.a11y.say("Row Completed");
+            }
         } else {
-            nextShape()
+            nextShape(quietly: beQuiet)
+            if (!beQuiet) {
+                print("shape landed");
+                AppDelegate.a11y.say("Shape Landed")
+            }
         }
     }
     
@@ -211,4 +232,15 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     func gameShapeDidMove(swiftris: Swiftris) {
         scene.redrawShape(swiftris.fallingShape!) {}
     }
+    
+    
+    // when navigating back to HomeViewController from GameViewController, the game continues to run. Not sure if this is a view controller problem or a GameScene problem.
+//    override func willMoveToParentViewController(parent: UIViewController?) {
+//        super.willMoveToParentViewController(parent)
+//        if parent == nil {
+//            swiftris.endGame()
+//            print("navigated away")
+//            self.navigationController!.popViewControllerAnimated(true)
+//        }
+//    }
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		424EA2F61D63DCB300234AE1 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 424EA2F51D63DCB300234AE1 /* GameKit.framework */; };
+		42A436F51D77D70400F5B8F3 /* AccessibilityUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A436F41D77D70400F5B8F3 /* AccessibilityUtil.swift */; };
 		42A9BADB1D051BFA009B7ACF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A9BADA1D051BFA009B7ACF /* AppDelegate.swift */; };
 		42A9BADF1D051BFA009B7ACF /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A9BADE1D051BFA009B7ACF /* GameScene.swift */; };
 		42A9BAE11D051BFA009B7ACF /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A9BAE01D051BFA009B7ACF /* GameViewController.swift */; };
@@ -55,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		424EA2F51D63DCB300234AE1 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		42A436F41D77D70400F5B8F3 /* AccessibilityUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessibilityUtil.swift; sourceTree = "<group>"; };
 		42A9BAD71D051BFA009B7ACF /* swiftris.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = swiftris.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42A9BADA1D051BFA009B7ACF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42A9BADE1D051BFA009B7ACF /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				42A9BB331D10E880009B7ACF /* JShape.swift */,
 				42A9BB351D10E8AA009B7ACF /* SShape.swift */,
 				42A9BB371D10E8E0009B7ACF /* ZShape.swift */,
+				42A436F41D77D70400F5B8F3 /* AccessibilityUtil.swift */,
 			);
 			path = swiftris;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 				42A9BB2A1D10D526009B7ACF /* Shape.swift in Sources */,
 				42A9BB261D0A48C4009B7ACF /* Array2D.swift in Sources */,
 				42A9BB301D10E7D9009B7ACF /* LineShape.swift in Sources */,
+				42A436F51D77D70400F5B8F3 /* AccessibilityUtil.swift in Sources */,
 				42A9BB361D10E8AA009B7ACF /* SShape.swift in Sources */,
 				42A9BB2E1D10E6D0009B7ACF /* TShape.swift in Sources */,
 				42DBE3581D6AC1C600D0A5E0 /* GameCenterCommunicator.swift in Sources */,

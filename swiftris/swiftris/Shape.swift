@@ -8,6 +8,7 @@
 
 import SpriteKit
 
+
 let NumOrientations: UInt32 = 4
 
 enum Orientation: Int, CustomStringConvertible {
@@ -55,6 +56,14 @@ class Shape: Hashable, CustomStringConvertible {
     // The color of the shape
     func color() -> BlockColor {
         return BlockColor.random()
+    }
+    
+    func verbalDescription() -> String {
+        return ""
+    }
+    
+    var verbalOrientation:String {
+        return "Block facing \(orientation)"
     }
     
     // The blocks comprising the shape
@@ -138,6 +147,8 @@ class Shape: Hashable, CustomStringConvertible {
         let newOrientation = Orientation.rotate(orientation, clockwise: true)
         rotateBlocks(newOrientation)
         orientation = newOrientation
+        
+        AppDelegate.a11y.say(self.verbalOrientation);
     }
     
     final func rotateCounterClockwise() {

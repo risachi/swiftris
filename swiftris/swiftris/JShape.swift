@@ -41,6 +41,10 @@ class JShape:Shape {
         return BlockColor.Teal
     }
     
+    override func verbalDescription() -> String {
+        return "J shape"
+    }
+    
     override var blockRowColumnPositions: [Orientation: Array<(columnDiff: Int, rowDiff: Int)>] {
         return [
             Orientation.Zero:       [(1, 0), (1, 1),  (1, 2),  (0, 2)],

@@ -29,6 +29,10 @@ class LineShape:Shape {
         return BlockColor.Orange
     }
     
+    override func verbalDescription() -> String {
+        return "line shape"
+    }
+    
     override var blockRowColumnPositions: [Orientation: Array<(columnDiff: Int, rowDiff: Int)>] {
         return [
             Orientation.Zero:       [(0, 0), (0, 1), (0, 2), (0, 3)],

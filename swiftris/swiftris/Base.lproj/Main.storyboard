@@ -125,6 +125,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5U-gw-4iY" userLabel="Endless">
                                 <rect key="frame" x="26" y="304" width="129" height="112"/>
+                                <accessibility key="accessibilityConfiguration" label="Endless"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="X5U-gw-4iY" secondAttribute="height" multiplier="443:383" id="6PW-y8-wz3"/>
                                 </constraints>
@@ -135,6 +136,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xp3-P5-0Va" userLabel="Timed">
                                 <rect key="frame" x="165" y="304" width="129" height="112"/>
+                                <accessibility key="accessibilityConfiguration" label="Timed"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Xp3-P5-0Va" secondAttribute="height" multiplier="443:383" id="tPs-L6-SAu"/>
                                 </constraints>
@@ -145,6 +147,7 @@
                             </button>
                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r0Y-XF-gAu" userLabel="Achievements">
                                 <rect key="frame" x="165" y="426" width="129" height="112"/>
+                                <accessibility key="accessibilityConfiguration" label="Achievements"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="r0Y-XF-gAu" secondAttribute="height" multiplier="443:383" id="3Da-Ax-zPR"/>
                                 </constraints>
@@ -155,6 +158,7 @@
                             </button>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PsM-zn-FL6" userLabel="Leaders">
                                 <rect key="frame" x="26" y="426" width="129" height="112"/>
+                                <accessibility key="accessibilityConfiguration" label="Leaders"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="PsM-zn-FL6" secondAttribute="height" multiplier="443:383" id="Vjx-46-onA"/>
                                 </constraints>
@@ -165,6 +169,10 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <accessibility key="accessibilityConfiguration" label="Swiftris">
+                            <accessibilityTraits key="traits" playsSound="YES"/>
+                            <bool key="isElement" value="NO"/>
+                        </accessibility>
                         <constraints>
                             <constraint firstItem="POQ-BG-Atg" firstAttribute="top" secondItem="u3T-zJ-kxh" secondAttribute="bottom" id="3kB-ZW-QBN"/>
                             <constraint firstItem="X5U-gw-4iY" firstAttribute="trailing" secondItem="PsM-zn-FL6" secondAttribute="trailing" id="41b-p4-SXz"/>

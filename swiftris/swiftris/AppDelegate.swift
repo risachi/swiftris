@@ -17,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // The global singleton Game Center adapter - it encapsulates all the
     // complexity of dealing with the Game Center.
     static let gc: GameCenterCommunicator = GameCenterCommunicator()
+    
+    // Global singleton Accessibility utility
+    static let a11y: AccessibilityUtil = AccessibilityUtil()
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {

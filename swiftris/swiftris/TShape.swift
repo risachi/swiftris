@@ -38,7 +38,10 @@ class TShape:Shape {
     override func color() -> BlockColor {
         return BlockColor.Blue
     }
-
+    
+    override func verbalDescription() -> String {
+        return "T shape"
+    }
     
     override var blockRowColumnPositions: [Orientation: Array<(columnDiff: Int, rowDiff: Int)>] {
         return [

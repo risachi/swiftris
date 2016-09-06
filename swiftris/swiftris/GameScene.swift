@@ -155,7 +155,7 @@ class GameScene: SKScene {
     func animateCollapsingLines(linesToRemove: Array<Array<Block>>, fallenBlocks: Array<Array<Block>>, completion:() -> ()) {
         var longestDuration: NSTimeInterval = 0
         for (columnIdx, column) in fallenBlocks.enumerate() {
-            for (blockIdx, block) in column.enumerate() {
+            for (_, block) in column.enumerate() {
                 let newPosition = pointForColumn(block.column, row: block.row)
                 let sprite = block.sprite!
                 let delay = (NSTimeInterval(columnIdx) * 0.05) + (NSTimeInterval() * 0.05)

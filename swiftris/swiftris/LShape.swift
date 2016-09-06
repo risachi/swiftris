@@ -41,6 +41,10 @@ class LShape:Shape {
     override func color() -> BlockColor {
         return BlockColor.Red
     }
+    
+    override func verbalDescription() -> String {
+        return "L shape"
+    }
 
     override var blockRowColumnPositions: [Orientation: Array<(columnDiff: Int, rowDiff: Int)>] {
         return [
