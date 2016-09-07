@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-let BlockSize:CGFloat = 20.0
+var BlockSize:CGFloat = 20.0
 
 // represents the slowest speed at which the shapes will travel (600 milliseconds - every 6/10ths of a second, our shape should decend by one row)
 let TickLengthLevelOne = NSTimeInterval(600)
@@ -32,9 +32,18 @@ class GameScene: SKScene {
     override init(size: CGSize) {
         super.init(size: size)
         
+        let ratio = CGFloat(NumColumns) / CGFloat(NumColumns + 7)
+        
+        let blockSizeWidth = size.width * ratio / CGFloat(NumColumns)
+        let blockSizeHeight = size.height / CGFloat(NumRows)
+        
+        BlockSize = blockSizeWidth > blockSizeHeight ? blockSizeHeight : blockSizeWidth
+        
+        
         anchorPoint = CGPoint(x: 0, y: 1.0)
         
-        let background = SKSpriteNode(imageNamed: "background")
+        let backgroundTexture = SKTexture(imageNamed: "background")
+        let background = SKSpriteNode(texture: backgroundTexture, size: size)
         background.position = CGPoint(x: 0, y: 0)
         background.anchorPoint = CGPoint(x: 0, y: 1.0)
         addChild(background)
@@ -102,7 +111,7 @@ class GameScene: SKScene {
                 texture = SKTexture(imageNamed: block.spriteName)
                 textureCache[block.spriteName] = texture
             }
-            let sprite = SKSpriteNode(texture: texture)
+            let sprite = SKSpriteNode(texture: texture, size: CGSizeMake(BlockSize, BlockSize))
             // we use pointForColumn to place each block's sprite in the proper location
             // we start at row - 2 such that the preview piece animates smoothly into place from a higher location
             sprite.position = pointForColumn(block.column, row:block.row - 2)
