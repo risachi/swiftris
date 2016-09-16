@@ -145,12 +145,22 @@ class Swiftris {
     
     func togglePauseState() {
         if isPaused {
-            // Unpause the game:
+            _unpauseGame()
             isPaused = false
         } else {
-            // Pause the game:
+            _pauseGame()
             isPaused = true
         }
+    }
+    
+    
+    func _unpauseGame() {
+        delegate?.gameDidUnpause(self)
+    }
+    
+    
+    func _pauseGame() {
+        delegate?.gameDidPause(self)
     }
     
     
