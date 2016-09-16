@@ -98,10 +98,19 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     }
     
     @IBAction func didTap(sender: UITapGestureRecognizer) {
-        swiftris.rotateShape()
+//        if swiftris.isPaused {
+//            return
+//        }
+
+//        swiftris.rotateShape()
+        swiftris.togglePauseState()
     }
     
     @IBAction func didPan(sender: UIPanGestureRecognizer) {
+        if swiftris.isPaused {
+            return
+        }
+        
         // we recover a point which defines the translation of the gesture relative to where it began
         // this is a measure of the distance that the user's finger has traveled
         let currentPoint = sender.translationInView(self.view)
@@ -125,6 +134,10 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     }
     
     @IBAction func didSwipe(sender: UISwipeGestureRecognizer) {
+        if swiftris.isPaused {
+            return
+        }
+        
         swiftris.dropShape()
     }
     
@@ -268,13 +281,13 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     
     
     func gameDidPause(swiftris: Swiftris) {
-        view.userInteractionEnabled = false
+//        view.userInteractionEnabled = false
         scene.stopTicking()
     }
     
     
     func gameDidUnpause(swiftris: Swiftris) {
-        view.userInteractionEnabled = true
+//        view.userInteractionEnabled = true
         scene.startTicking()
     }
     
