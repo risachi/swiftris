@@ -268,12 +268,14 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     
     
     func gameDidPause(swiftris: Swiftris) {
-        // TBD
+        view.userInteractionEnabled = false
+        scene.stopTicking()
     }
     
     
     func gameDidUnpause(swiftris: Swiftris) {
-        // TBD
+        view.userInteractionEnabled = true
+        scene.startTicking()
     }
     
     
