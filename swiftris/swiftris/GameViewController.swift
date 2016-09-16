@@ -6,30 +6,28 @@
 //  Copyright (c) 2016 Bloc. All rights reserved.
 //
 
-import UIKit
+import AVFoundation
 import SpriteKit
+import UIKit
+
 
 class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognizerDelegate {
     var scene: GameScene!
     var swiftris: Swiftris!
     var panPointReference:CGPoint? //keep track of the last point on th screen at which a shape movement occurred or where a pan begins
     var gameType: GamePlayChoice!
+    var player: AVAudioPlayer?
+    
     
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var levelLabel: UILabel!
 
     
-    override func viewWillAppear(animated: Bool) {
-        self.navigationController!.navigationBar.hidden = false
-    }
-
-    
     override func viewDidLoad() {
+        print("viewDidLoad()")
         super.viewDidLoad()
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        //self.navigationController?.isAccessibilityElement = false;
-        //self.navigationController?.accessibilityLabel = nil;
         
         // configure the view
         // as! is a forced downcast; use only when you are sure the downcast will always succeed, otherwise this form will trigger a runtime error if you try to downcast to an incorrect class type
@@ -49,6 +47,21 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         // a closure for the tick property of GameScene.swift:
         scene.tick = didTick
         
+        self.navigationController!.navigationBar.hidden = false
+        self.navigationController?.navigationBar.barTintColor = UIColor.grayColor()
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor();
+        
+        // present the scene
+        skView.presentScene(scene)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        print("viewWillAppear()")
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        print("viewDidAppear()")
         swiftris = Swiftris()
         swiftris.delegate = self
         swiftris.gameChoice = gameType
@@ -57,13 +70,28 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         // Set the title using the "ternary" operator ... ? :
         // if game type is Classic, set the title to Endless. Otherwise, set it to "Time..."
         self.navigationItem.title = (gameType == GamePlayChoice.Classic) ? "Endless" : "Time: 2:00"
-        self.navigationController?.navigationBar.barTintColor = UIColor.grayColor()
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor();
-        
-        // present the scene
-        skView.presentScene(scene)
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        print("viewWillDisappear()")
+        self.swiftris.endGame()
+    }
+    
+
+    func playBackgoundMusic() {
+        let url = NSBundle.mainBundle().URLForResource("theme", withExtension: "mp3")!
+        
+        do {
+            player = try AVAudioPlayer(contentsOfURL: url)
+            guard let player = player else { return }
+            
+            player.prepareToPlay()
+            player.play()
+        } catch let error as NSError {
+            print(error.description)
+        }
+    }
+    
 
     override func prefersStatusBarHidden() -> Bool {
         return true
@@ -170,18 +198,19 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         } else {
             nextShape(quietly: false)
         }
+        
+        playBackgoundMusic()
     }
     
     func gameDidEnd(swiftris: Swiftris) {
+        print("gameDidEnd")
         view.userInteractionEnabled = false
+        player?.stop()
         
         scene.stopTicking()
         scene.playSound("gameover.mp3")
-        scene.animateCollapsingLines(swiftris.removeAllBlocks(), fallenBlocks: swiftris.removeAllBlocks()) {
-            swiftris.beginGame()
-        }
+        scene.animateCollapsingLines(swiftris.removeAllBlocks(), fallenBlocks: swiftris.removeAllBlocks()) {}
         
-        print("game over");
         AppDelegate.a11y.say("Game Over")
     }
     

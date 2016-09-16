@@ -21,7 +21,8 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, GKGameC
     
     
     override func viewWillAppear(animated: Bool) {
-         self.navigationController!.navigationBar.hidden = true
+        self.navigationController!.navigationBar.hidden = true
+        
     }
 
 
