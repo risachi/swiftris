@@ -23,22 +23,20 @@ let LevelThreshold = 100
 
 
 protocol SwiftrisDelegate {
-    // Invoked when the current round of Swiftris ends
     func gameDidEnd(swiftris: Swiftris)
     
-    // Invoked after a new game has begun
+    func gameDidPause(swiftris: Swiftris)
+    
+    func gameDidUnpause(swiftris: Swiftris)
+    
     func gameDidBegin(swiftris: Swiftris)
     
-    // Invoked when the falling shape has become part of the game board
     func gameShapeDidLand(swiftris: Swiftris)
     
-    // Invoked when the falling shape has changed its location
     func gameShapeDidMove(swiftris: Swiftris)
     
-    // Invoked when the falling shape has changed its location after being dropped
     func gameShapeDidDrop(swiftris: Swiftris)
     
-    // Invoked when the game has reached a new level
     func gameDidLevelUp(swiftris: Swiftris)
 }
 
@@ -51,6 +49,8 @@ class Swiftris {
     var nextShape:Shape?
     var fallingShape:Shape?
     var delegate:SwiftrisDelegate?
+    
+    var isPaused = false
     
     var score = 0
     var level = 1
@@ -134,12 +134,25 @@ class Swiftris {
         return false
     }
     
+    
     func endGame() {
         AppDelegate.gc.reportScore(score);
         score = 0
         level = 1
         delegate?.gameDidEnd(self)
     }
+    
+    
+    func togglePauseState() {
+        if isPaused {
+            // Unpause the game:
+            isPaused = false
+        } else {
+            // Pause the game:
+            isPaused = true
+        }
+    }
+    
     
     //linesRemoved maintains each row of blocks which the user has filled in
     func removeCompletedLines() -> (linesRemoved: Array<Array<Block>>, fallenBlocks: Array<Array<Block>>, beQuiet: Bool) {

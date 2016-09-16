@@ -203,7 +203,6 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     }
     
     func gameDidEnd(swiftris: Swiftris) {
-        print("gameDidEnd")
         view.userInteractionEnabled = false
         player?.stop()
         
@@ -222,7 +221,6 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
             scene.tickLengthMillis -= 50
         }
 
-        print("leveled up");
         scene.playSound("levelup.mp3")
         AppDelegate.a11y.say("Leveled Up");
     }
@@ -266,6 +264,16 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     // after a shape has moved, we have to redraw its representative sprites at its new location
     func gameShapeDidMove(swiftris: Swiftris) {
         scene.redrawShape(swiftris.fallingShape!) {}
+    }
+    
+    
+    func gameDidPause(swiftris: Swiftris) {
+        // TBD
+    }
+    
+    
+    func gameDidUnpause(swiftris: Swiftris) {
+        // TBD
     }
     
     
