@@ -98,12 +98,11 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     }
     
     @IBAction func didTap(sender: UITapGestureRecognizer) {
-//        if swiftris.isPaused {
-//            return
-//        }
+        if swiftris.isPaused {
+            return
+        }
 
-//        swiftris.rotateShape()
-        swiftris.togglePauseState()
+        swiftris.rotateShape()
     }
     
     @IBAction func didPan(sender: UIPanGestureRecognizer) {
