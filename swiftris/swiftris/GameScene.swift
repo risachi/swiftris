@@ -57,7 +57,34 @@ class GameScene: SKScene {
         
         shapeLayer.position = LayerPosition
         shapeLayer.addChild(gameBoard)
-        gameLayer.addChild(shapeLayer)        
+        gameLayer.addChild(shapeLayer)
+        
+        
+        // score layer, level layer, preview layer, pause button layer
+        
+        let scoreTexture = SKTexture(imageNamed: "whitebg")
+        
+        let previewBoard = SKSpriteNode(texture: scoreTexture, size: CGSizeMake(BlockSize * 5, BlockSize * 5))
+        previewBoard.anchorPoint = CGPoint(x: 0, y: 1.0)
+        previewBoard.position = pointForColumn(12, row: 1)
+        
+        let scoreBoard = SKSpriteNode(texture: scoreTexture, size: CGSizeMake(BlockSize * 5, BlockSize * 5))
+        scoreBoard.anchorPoint = CGPoint(x: 0, y: 1.0)
+        scoreBoard.position = pointForColumn(12, row: 6)
+        
+        let levelBoard = SKSpriteNode(texture: scoreTexture, size: CGSizeMake(BlockSize * 5, BlockSize * 5))
+        levelBoard.anchorPoint = CGPoint(x: 0, y: 1.0)
+        levelBoard.position = pointForColumn(12, row: 11)
+        
+        let pauseTexture = SKTexture(imageNamed: "pause")
+        let pauseBoard = SKSpriteNode(texture: pauseTexture, size: CGSizeMake(BlockSize * 5, BlockSize * 5))
+        pauseBoard.anchorPoint = CGPoint(x: 0, y: 1.0)
+        pauseBoard.position = pointForColumn(12, row: 16)
+        
+        gameLayer.addChild(previewBoard)
+        gameLayer.addChild(scoreBoard)
+        gameLayer.addChild(levelBoard)
+        gameLayer.addChild(pauseBoard)
     }
     
     // GameViewController may use this method to play any sound file on demand

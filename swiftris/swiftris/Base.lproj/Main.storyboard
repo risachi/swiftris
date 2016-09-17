@@ -238,7 +238,7 @@
         <image name="background" width="320" height="568"/>
         <image name="gameboard" width="200" height="400"/>
         <image name="logo" width="167" height="122"/>
-        <image name="whitebg" width="84" height="100"/>
+        <image name="whitebg" width="167" height="196"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="8Mt-SH-q1Z"/>
