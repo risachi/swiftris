@@ -56,6 +56,10 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         skView.presentScene(scene)
     }
     
+    func togglePause() {
+        swiftris.togglePause()
+    }
+    
     override func viewWillAppear(animated: Bool) {
         print("viewWillAppear()")
     }
@@ -66,6 +70,8 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         swiftris.delegate = self
         swiftris.gameChoice = gameType
         swiftris.beginGame()
+        
+        
         
         // Set the title using the "ternary" operator ... ? :
         // if game type is Classic, set the title to Endless. Otherwise, set it to "Time..."

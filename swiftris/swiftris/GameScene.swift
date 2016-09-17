@@ -95,12 +95,13 @@ class GameScene: SKScene {
         let positionInScene = touch.locationInNode(self)
         let touchedNode     = self.nodeAtPoint(positionInScene)
         
-        if let name = touchedNode.name
-        {
-            if name == "pineapple"
-            {
-                print("Touched")
+        if let name = touchedNode.name {
+            if name == "pause button" {
+                print("Touched Pause!")
+                myController.togglePause()
             }
+        } else {
+            print("Touched by an unnamed entity!")
         }
     }
     
