@@ -80,12 +80,31 @@ class GameScene: SKScene {
         let pauseBoard = SKSpriteNode(texture: pauseTexture, size: CGSizeMake(BlockSize * 5, BlockSize * 5))
         pauseBoard.anchorPoint = CGPoint(x: 0, y: 1.0)
         pauseBoard.position = pointForColumn(12, row: 16)
+        pauseBoard.name = "pause button"
         
         gameLayer.addChild(previewBoard)
         gameLayer.addChild(scoreBoard)
         gameLayer.addChild(levelBoard)
         gameLayer.addChild(pauseBoard)
     }
+    
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        let touch:UITouch = touches.first!
+        
+        let positionInScene = touch.locationInNode(self)
+        let touchedNode = self.nodeAtPoint(positionInScene)
+        
+        if let name = touchedNode.name
+        {
+            if name == "pineapple"
+            {
+                print("Touched")
+            }
+        }
+        
+    }
+    
     
     // GameViewController may use this method to play any sound file on demand
     func playSound(sound:String) {
