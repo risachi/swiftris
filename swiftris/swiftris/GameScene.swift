@@ -90,10 +90,10 @@ class GameScene: SKScene {
     
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        let touch:UITouch = touches.first!
-        
+        guard let touch = touches.first else { return }
+    
         let positionInScene = touch.locationInNode(self)
-        let touchedNode = self.nodeAtPoint(positionInScene)
+        let touchedNode     = self.nodeAtPoint(positionInScene)
         
         if let name = touchedNode.name
         {
@@ -102,7 +102,6 @@ class GameScene: SKScene {
                 print("Touched")
             }
         }
-        
     }
     
     
