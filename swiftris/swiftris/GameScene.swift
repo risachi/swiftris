@@ -67,23 +67,24 @@ class GameScene: SKScene {
         // score layer, level layer, preview layer, pause button layer
         
         let scoreTexture = SKTexture(imageNamed: "whitebg")
+        let column = 10.5
         
         let previewBoard = SKSpriteNode(texture: scoreTexture, size: CGSizeMake(BlockSize * 5, BlockSize * 5))
         previewBoard.anchorPoint = CGPoint(x: 0, y: 1.0)
-        previewBoard.position = pointForColumn(12, row: 1)
+        previewBoard.position = pointForColumnDouble(column, row: 0.5)
         
         let scoreBoard = SKSpriteNode(texture: scoreTexture, size: CGSizeMake(BlockSize * 5, BlockSize * 5))
         scoreBoard.anchorPoint = CGPoint(x: 0, y: 1.0)
-        scoreBoard.position = pointForColumn(12, row: 6)
+        scoreBoard.position = pointForColumnDouble(column, row: 6.5)
         
         let levelBoard = SKSpriteNode(texture: scoreTexture, size: CGSizeMake(BlockSize * 5, BlockSize * 5))
         levelBoard.anchorPoint = CGPoint(x: 0, y: 1.0)
-        levelBoard.position = pointForColumn(12, row: 11)
+        levelBoard.position = pointForColumnDouble(column, row: 12.5)
         
         let pauseTexture = SKTexture(imageNamed: "pause")
         self.pauseButton = SKSpriteNode(texture: pauseTexture, size: CGSizeMake(BlockSize * 5, BlockSize * 5))
         pauseButton!.anchorPoint = CGPoint(x: 0, y: 1.0)
-        pauseButton!.position = pointForColumn(12, row: 16)
+        pauseButton!.position = pointForColumnDouble(column, row: 19.5)
         pauseButton!.name = "pause button"
         
         gameLayer.addChild(previewBoard)
@@ -161,6 +162,12 @@ class GameScene: SKScene {
         return CGPointMake(x, y)
     }
     
+    func pointForColumnDouble(column: Double, row: Double) -> CGPoint {
+        let x = LayerPosition.x + (CGFloat(column) * BlockSize) + (BlockSize / 2)
+        let y = LayerPosition.y - ((CGFloat(row) * BlockSize) + (BlockSize / 2))
+        return CGPointMake(x, y)
+    }
+
     func addPreviewShapeToScene(shape:Shape, completion:() -> ()) {
         for block in shape.blocks {
             // adds a shape for the first time to the scene as a preview shape
