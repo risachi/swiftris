@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-let BlockSize:CGFloat = 20.0
+var BlockSize:CGFloat = 20.0
 
 // represents the slowest speed at which the shapes will travel (600 milliseconds - every 6/10ths of a second, our shape should decend by one row)
 let TickLengthLevelOne = NSTimeInterval(600)
@@ -17,7 +17,7 @@ class GameScene: SKScene {
     
     let gameLayer = SKNode() //sits above the background visuals
     let shapeLayer = SKNode() //sits above gameLayer
-    let LayerPosition = CGPoint(x: 6, y: -6) // gives an offset from the edge of the screen
+    let LayerPosition = CGPoint(x: 6, y: -18) // gives an offset from the edge of the screen
     
     var tick:(() -> ())? // tick is a closure which takes no parameters and returns nothing. Its question mark indicates that it's optional and may be nil
     var tickLengthMillis = TickLengthLevelOne //GameScene's curring tick length (set to TickLengthLevelOne by default)
@@ -25,16 +25,33 @@ class GameScene: SKScene {
     
     var textureCache = Dictionary<String, SKTexture>()
     
+    var gameViewController: GameViewController
+    
+    var pauseButton: SKSpriteNode?
+    var scoreLabel: SKLabelNode?
+    var levelLabel: SKLabelNode?
+    
+    
     required init(coder aDecoder: NSCoder) {
         fatalError("NSCoder not supported")
     }
     
-    override init(size: CGSize) {
+    init(size: CGSize, controller: GameViewController) {
+        self.gameViewController = controller
         super.init(size: size)
+        
+        let ratio = CGFloat(NumColumns) / CGFloat(NumColumns + 7)
+        
+        let blockSizeWidth = size.width * ratio / CGFloat(NumColumns)
+        let blockSizeHeight = size.height / CGFloat(NumRows)
+        
+        BlockSize = blockSizeWidth > blockSizeHeight ? blockSizeHeight : blockSizeWidth
+        
         
         anchorPoint = CGPoint(x: 0, y: 1.0)
         
-        let background = SKSpriteNode(imageNamed: "background")
+        let backgroundTexture = SKTexture(imageNamed: "background")
+        let background = SKSpriteNode(texture: backgroundTexture, size: size)
         background.position = CGPoint(x: 0, y: 0)
         background.anchorPoint = CGPoint(x: 0, y: 1.0)
         addChild(background)
@@ -48,8 +65,113 @@ class GameScene: SKScene {
         
         shapeLayer.position = LayerPosition
         shapeLayer.addChild(gameBoard)
-        gameLayer.addChild(shapeLayer)        
+        gameLayer.addChild(shapeLayer)
+        
+        
+        // score layer, level layer, preview layer, pause button layer
+        
+        let scoreTexture = SKTexture(imageNamed: "whitebg")
+        let column = 10.5
+        
+        let previewBoard = SKSpriteNode(texture: scoreTexture, size: CGSizeMake(BlockSize * 5, BlockSize * 5))
+        previewBoard.anchorPoint = CGPoint(x: 0, y: 1.0)
+        previewBoard.position = pointForColumnDouble(column, row: 0.5)
+        
+        let scoreBoard = SKSpriteNode(texture: scoreTexture, size: CGSizeMake(BlockSize * 5, BlockSize * 5))
+        scoreBoard.anchorPoint = CGPoint(x: 0, y: 1.0)
+        scoreBoard.position = pointForColumnDouble(column, row: 6.5)
+        
+        let levelBoard = SKSpriteNode(texture: scoreTexture, size: CGSizeMake(BlockSize * 5, BlockSize * 5))
+        levelBoard.anchorPoint = CGPoint(x: 0, y: 1.0)
+        levelBoard.position = pointForColumnDouble(column, row: 12.5)
+        
+        let pauseTexture = SKTexture(imageNamed: "pause")
+        self.pauseButton = SKSpriteNode(texture: pauseTexture, size: CGSizeMake(BlockSize * 5, BlockSize * 5))
+        pauseButton!.anchorPoint = CGPoint(x: 0, y: 1.0)
+        pauseButton!.position = pointForColumnDouble(column, row: 19.5)
+        pauseButton!.name = "pause button"
+        
+        gameLayer.addChild(previewBoard)
+        gameLayer.addChild(scoreBoard)
+        gameLayer.addChild(levelBoard)
+        gameLayer.addChild(pauseButton!)
+        
+        //
+        // Labels and text output
+        //
+        
+        let textOffsetX: CGFloat = 55
+        let textOffsetY: CGFloat = -80
+        let labelOffsetX: CGFloat = 55
+        let labelOffsetY: CGFloat = -40
+        
+        
+        self.scoreLabel = SKLabelNode(fontNamed: "Helvetica")
+        self.scoreLabel!.fontSize = 36
+        self.scoreLabel!.fontColor = UIColor.whiteColor()
+        self.scoreLabel!.position = CGPoint(
+            x: scoreBoard.position.x + textOffsetX,
+            y: scoreBoard.position.y + textOffsetY
+        )
+        gameLayer.addChild(scoreLabel!)
+
+        self.levelLabel = SKLabelNode(fontNamed: "Helvetica")
+        self.levelLabel!.fontSize  = scoreLabel!.fontSize
+        self.levelLabel!.fontColor = scoreLabel!.fontColor
+        self.levelLabel!.position  = CGPoint(
+            x: levelBoard.position.x + textOffsetX,
+            y: levelBoard.position.y + textOffsetY
+        )
+        gameLayer.addChild(levelLabel!)
+
+    
+        let scoreHeading = SKLabelNode(fontNamed: "Helvetica")
+        scoreHeading.text = "SCORE"
+        scoreHeading.fontSize  = 20
+        scoreHeading.fontColor = UIColor.whiteColor()
+        scoreHeading.position  = CGPoint(
+            x: scoreBoard.position.x + labelOffsetX,
+            y: scoreBoard.position.y + labelOffsetY
+        )
+        gameLayer.addChild(scoreHeading)
+
+        let levelHeading = SKLabelNode(fontNamed: "Helvetica")
+        levelHeading.text = "LEVEL"
+        levelHeading.fontSize  = scoreHeading.fontSize
+        levelHeading.fontColor = scoreHeading.fontColor
+        levelHeading.position  = CGPoint(
+            x: levelBoard.position.x + labelOffsetX,
+            y: levelBoard.position.y + labelOffsetY
+        )
+        gameLayer.addChild(levelHeading)
+
     }
+    
+    
+    func isInPauseButton(point: CGPoint) -> Bool {
+        let scaledPoint = CGPoint(x: point.x, y: point.y * -1 - 22)
+        
+        if let name = nodeAtPoint(scaledPoint).name {
+            return name == "pause button"
+        } else {
+            return false
+        }
+    }
+    
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        guard let touch = touches.first else { return }
+    
+        let positionInScene = touch.locationInNode(self)
+        let touchedNode     = self.nodeAtPoint(positionInScene)
+        
+        if let name = touchedNode.name {
+            if name == "pause button" {
+                gameViewController.togglePauseState()
+            }
+        }
+    }
+    
     
     // GameViewController may use this method to play any sound file on demand
     func playSound(sound:String) {
@@ -94,6 +216,12 @@ class GameScene: SKScene {
         return CGPointMake(x, y)
     }
     
+    func pointForColumnDouble(column: Double, row: Double) -> CGPoint {
+        let x = LayerPosition.x + (CGFloat(column) * BlockSize) + (BlockSize / 2)
+        let y = LayerPosition.y - ((CGFloat(row) * BlockSize) + (BlockSize / 2))
+        return CGPointMake(x, y)
+    }
+
     func addPreviewShapeToScene(shape:Shape, completion:() -> ()) {
         for block in shape.blocks {
             // adds a shape for the first time to the scene as a preview shape
@@ -102,7 +230,7 @@ class GameScene: SKScene {
                 texture = SKTexture(imageNamed: block.spriteName)
                 textureCache[block.spriteName] = texture
             }
-            let sprite = SKSpriteNode(texture: texture)
+            let sprite = SKSpriteNode(texture: texture, size: CGSizeMake(BlockSize, BlockSize))
             // we use pointForColumn to place each block's sprite in the proper location
             // we start at row - 2 such that the preview piece animates smoothly into place from a higher location
             sprite.position = pointForColumn(block.column, row:block.row - 2)
