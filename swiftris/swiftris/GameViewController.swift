@@ -204,8 +204,8 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     
     func gameDidBegin(swiftris: Swiftris) {
         //reset the score and level labels as well a the speed at which the ticks occur, beginning with TickLengthLevelOne
-        levelLabel.text = "\(swiftris.level)"
-        scoreLabel.text = "\(swiftris.score)"
+        scene.levelLabel!.text = "\(swiftris.level)"
+        scene.scoreLabel!.text = "\(swiftris.score)"
         scene.tickLengthMillis = TickLengthLevelOne
         
         // The following is false when restarting a new game
@@ -232,7 +232,7 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     }
     
     func gameDidLevelUp(swiftris: Swiftris) {
-        levelLabel.text = "\(swiftris.level)"
+        scene.levelLabel!.text = "\(swiftris.level)"
         if scene.tickLengthMillis >= 100 {
             scene.tickLengthMillis -= 100
         } else if scene.tickLengthMillis > 50 {
@@ -260,7 +260,7 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         let (linesRemoved, fallenBlocks, beQuiet) = swiftris.removeCompletedLines()
         
         if linesRemoved.count > 0 {
-            self.scoreLabel.text = "\(swiftris.score)"
+            self.scene.scoreLabel!.text = "\(swiftris.score)"
             scene.animateCollapsingLines(linesRemoved, fallenBlocks:fallenBlocks) {
                 // a recursive call: one which invokes itself
                 self.gameShapeDidLand(swiftris)
