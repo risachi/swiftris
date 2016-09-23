@@ -41,7 +41,7 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         }
         
         // create and configure the scene
-        scene = GameScene(size: skView.bounds.size)
+        scene = GameScene(size: skView.bounds.size, controller: self)
         scene.scaleMode = .AspectFill
         
         // a closure for the tick property of GameScene.swift:
@@ -56,8 +56,8 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         skView.presentScene(scene)
     }
     
-    func togglePause() {
-        swiftris.togglePause()
+    func togglePauseState() {
+        swiftris.togglePauseState()
     }
     
     override func viewWillAppear(animated: Bool) {

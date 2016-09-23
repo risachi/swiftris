@@ -25,11 +25,14 @@ class GameScene: SKScene {
     
     var textureCache = Dictionary<String, SKTexture>()
     
+    var gameViewController: GameViewController
+    
     required init(coder aDecoder: NSCoder) {
         fatalError("NSCoder not supported")
     }
     
-    override init(size: CGSize) {
+    init(size: CGSize, controller: GameViewController) {
+        self.gameViewController = controller
         super.init(size: size)
         
         let ratio = CGFloat(NumColumns) / CGFloat(NumColumns + 7)
@@ -98,7 +101,7 @@ class GameScene: SKScene {
         if let name = touchedNode.name {
             if name == "pause button" {
                 print("Touched Pause!")
-                myController.togglePause()
+                gameViewController.togglePauseState()
             }
         } else {
             print("Touched by an unnamed entity!")
