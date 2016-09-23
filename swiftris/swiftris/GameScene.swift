@@ -102,6 +102,9 @@ class GameScene: SKScene {
         
         let textOffsetX: CGFloat = 55
         let textOffsetY: CGFloat = -80
+        let labelOffsetX: CGFloat = 55
+        let labelOffsetY: CGFloat = -40
+        
         
         self.scoreLabel = SKLabelNode(fontNamed: "Helvetica")
         self.scoreLabel!.fontSize = 36
@@ -120,6 +123,28 @@ class GameScene: SKScene {
             y: levelBoard.position.y + textOffsetY
         )
         gameLayer.addChild(levelLabel!)
+
+    
+        let scoreHeading = SKLabelNode(fontNamed: "Helvetica")
+        scoreHeading.text = "SCORE"
+        scoreHeading.fontSize  = 20
+        scoreHeading.fontColor = UIColor.whiteColor()
+        scoreHeading.position  = CGPoint(
+            x: scoreBoard.position.x + labelOffsetX,
+            y: scoreBoard.position.y + labelOffsetY
+        )
+        gameLayer.addChild(scoreHeading)
+
+        let levelHeading = SKLabelNode(fontNamed: "Helvetica")
+        levelHeading.text = "LEVEL"
+        levelHeading.fontSize  = scoreHeading.fontSize
+        levelHeading.fontColor = scoreHeading.fontColor
+        levelHeading.position  = CGPoint(
+            x: levelBoard.position.x + labelOffsetX,
+            y: levelBoard.position.y + labelOffsetY
+        )
+        gameLayer.addChild(levelHeading)
+
     }
     
     
