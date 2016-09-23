@@ -26,7 +26,11 @@ class GameScene: SKScene {
     var textureCache = Dictionary<String, SKTexture>()
     
     var gameViewController: GameViewController
+    
     var pauseButton: SKSpriteNode?
+    var scoreLabel: SKLabelNode?
+    var levelLabel: SKLabelNode?
+    
     
     required init(coder aDecoder: NSCoder) {
         fatalError("NSCoder not supported")
@@ -91,6 +95,18 @@ class GameScene: SKScene {
         gameLayer.addChild(scoreBoard)
         gameLayer.addChild(levelBoard)
         gameLayer.addChild(pauseButton!)
+        
+        //
+        // Labels and text output
+        //
+        
+        self.scoreLabel = SKLabelNode(fontNamed: "Copperplate")
+        self.scoreLabel!.fontSize = 40
+        self.scoreLabel!.fontColor = UIColor.whiteColor()
+        self.scoreLabel!.text = "89"
+        self.scoreLabel!.verticalAlignmentMode = .Center
+        self.scoreLabel!.position = CGPoint(x: scoreBoard.position.x + 55, y: scoreBoard.position.y - 50)
+        gameLayer.addChild(scoreLabel!)
     }
     
     
