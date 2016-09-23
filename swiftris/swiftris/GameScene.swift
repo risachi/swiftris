@@ -26,7 +26,7 @@ class GameScene: SKScene {
     var textureCache = Dictionary<String, SKTexture>()
     
     var gameViewController: GameViewController
-    var pauseBoard: SKSpriteNode?
+    var pauseButton: SKSpriteNode?
     
     required init(coder aDecoder: NSCoder) {
         fatalError("NSCoder not supported")
@@ -81,15 +81,15 @@ class GameScene: SKScene {
         levelBoard.position = pointForColumn(12, row: 11)
         
         let pauseTexture = SKTexture(imageNamed: "pause")
-        self.pauseBoard = SKSpriteNode(texture: pauseTexture, size: CGSizeMake(BlockSize * 5, BlockSize * 5))
-        pauseBoard!.anchorPoint = CGPoint(x: 0, y: 1.0)
-        pauseBoard!.position = pointForColumn(12, row: 16)
-        pauseBoard!.name = "pause button"
+        self.pauseButton = SKSpriteNode(texture: pauseTexture, size: CGSizeMake(BlockSize * 5, BlockSize * 5))
+        pauseButton!.anchorPoint = CGPoint(x: 0, y: 1.0)
+        pauseButton!.position = pointForColumn(12, row: 16)
+        pauseButton!.name = "pause button"
         
         gameLayer.addChild(previewBoard)
         gameLayer.addChild(scoreBoard)
         gameLayer.addChild(levelBoard)
-        gameLayer.addChild(pauseBoard!)
+        gameLayer.addChild(pauseButton!)
     }
     
     
