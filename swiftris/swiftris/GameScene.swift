@@ -95,14 +95,9 @@ class GameScene: SKScene {
     
     func isInPauseButton(point: CGPoint) -> Bool {
         let scaledPoint = CGPoint(x: point.x, y: point.y * -1 - 22)
-        print("Is \(scaledPoint) in the pause button?")
         
         if let name = nodeAtPoint(scaledPoint).name {
-            if name == "pause button" {
-                return true
-            } else {
-                return false
-            }
+            return name == "pause button"
         } else {
             return false
         }
@@ -117,11 +112,8 @@ class GameScene: SKScene {
         
         if let name = touchedNode.name {
             if name == "pause button" {
-                print("Touched Pause at \(positionInScene)")
                 gameViewController.togglePauseState()
             }
-        } else {
-            print("Touched in an unnamed place")
         }
     }
     
