@@ -26,6 +26,7 @@ class GameScene: SKScene {
     var textureCache = Dictionary<String, SKTexture>()
     
     var gameViewController: GameViewController
+    var pauseBoard: SKSpriteNode?
     
     required init(coder aDecoder: NSCoder) {
         fatalError("NSCoder not supported")
@@ -80,15 +81,31 @@ class GameScene: SKScene {
         levelBoard.position = pointForColumn(12, row: 11)
         
         let pauseTexture = SKTexture(imageNamed: "pause")
-        let pauseBoard = SKSpriteNode(texture: pauseTexture, size: CGSizeMake(BlockSize * 5, BlockSize * 5))
-        pauseBoard.anchorPoint = CGPoint(x: 0, y: 1.0)
-        pauseBoard.position = pointForColumn(12, row: 16)
-        pauseBoard.name = "pause button"
+        self.pauseBoard = SKSpriteNode(texture: pauseTexture, size: CGSizeMake(BlockSize * 5, BlockSize * 5))
+        pauseBoard!.anchorPoint = CGPoint(x: 0, y: 1.0)
+        pauseBoard!.position = pointForColumn(12, row: 16)
+        pauseBoard!.name = "pause button"
         
         gameLayer.addChild(previewBoard)
         gameLayer.addChild(scoreBoard)
         gameLayer.addChild(levelBoard)
-        gameLayer.addChild(pauseBoard)
+        gameLayer.addChild(pauseBoard!)
+    }
+    
+    
+    func isInPauseButton(point: CGPoint) -> Bool {
+        let scaledPoint = CGPoint(x: point.x, y: point.y * -1 - 22)
+        print("Is \(scaledPoint) in the pause button?")
+        
+        if let name = nodeAtPoint(scaledPoint).name {
+            if name == "pause button" {
+                return true
+            } else {
+                return false
+            }
+        } else {
+            return false
+        }
     }
     
     
@@ -100,11 +117,11 @@ class GameScene: SKScene {
         
         if let name = touchedNode.name {
             if name == "pause button" {
-                print("Touched Pause!")
+                print("Touched Pause at \(positionInScene)")
                 gameViewController.togglePauseState()
             }
         } else {
-            print("Touched by an unnamed entity!")
+            print("Touched in an unnamed place")
         }
     }
     

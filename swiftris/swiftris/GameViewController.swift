@@ -104,7 +104,7 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     }
     
     @IBAction func didTap(sender: UITapGestureRecognizer) {
-        if swiftris.isPaused {
+        if scene.isInPauseButton(sender.locationInView(view)) {
             return
         }
 
