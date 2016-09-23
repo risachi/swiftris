@@ -104,10 +104,18 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     }
     
     @IBAction func didTap(sender: UITapGestureRecognizer) {
+        if swiftris.isPaused {
+            return
+        }
+
         swiftris.rotateShape()
     }
     
     @IBAction func didPan(sender: UIPanGestureRecognizer) {
+        if swiftris.isPaused {
+            return
+        }
+        
         // we recover a point which defines the translation of the gesture relative to where it began
         // this is a measure of the distance that the user's finger has traveled
         let currentPoint = sender.translationInView(self.view)
@@ -131,6 +139,10 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     }
     
     @IBAction func didSwipe(sender: UISwipeGestureRecognizer) {
+        if swiftris.isPaused {
+            return
+        }
+        
         swiftris.dropShape()
     }
     
@@ -209,7 +221,6 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     }
     
     func gameDidEnd(swiftris: Swiftris) {
-        print("gameDidEnd")
         view.userInteractionEnabled = false
         player?.stop()
         
@@ -228,7 +239,6 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
             scene.tickLengthMillis -= 50
         }
 
-        print("leveled up");
         scene.playSound("levelup.mp3")
         AppDelegate.a11y.say("Leveled Up");
     }
@@ -272,6 +282,18 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     // after a shape has moved, we have to redraw its representative sprites at its new location
     func gameShapeDidMove(swiftris: Swiftris) {
         scene.redrawShape(swiftris.fallingShape!) {}
+    }
+    
+    
+    func gameDidPause(swiftris: Swiftris) {
+//        view.userInteractionEnabled = false
+        scene.stopTicking()
+    }
+    
+    
+    func gameDidUnpause(swiftris: Swiftris) {
+//        view.userInteractionEnabled = true
+        scene.startTicking()
     }
     
     
