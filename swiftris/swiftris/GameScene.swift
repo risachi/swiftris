@@ -100,13 +100,21 @@ class GameScene: SKScene {
         // Labels and text output
         //
         
-        self.scoreLabel = SKLabelNode(fontNamed: "Copperplate")
+        self.scoreLabel = SKLabelNode(fontNamed: "Helvetica")
         self.scoreLabel!.fontSize = 40
         self.scoreLabel!.fontColor = UIColor.whiteColor()
         self.scoreLabel!.text = "89"
         self.scoreLabel!.verticalAlignmentMode = .Center
         self.scoreLabel!.position = CGPoint(x: scoreBoard.position.x + 55, y: scoreBoard.position.y - 50)
         gameLayer.addChild(scoreLabel!)
+
+        self.levelLabel = SKLabelNode(fontNamed: "Helvetica")
+        self.levelLabel!.fontSize = 40
+        self.levelLabel!.fontColor = UIColor.whiteColor()
+        self.levelLabel!.text = "2"
+        self.levelLabel!.verticalAlignmentMode = .Center
+        self.levelLabel!.position = CGPoint(x: levelBoard.position.x + 55, y: levelBoard.position.y - 50)
+        gameLayer.addChild(levelLabel!)
     }
     
     
